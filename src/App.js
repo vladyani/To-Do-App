@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
      <React.Fragment>
-
+        <div className="bodyOf"></div>
      </React.Fragment>
     );
   }
