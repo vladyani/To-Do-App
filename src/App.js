@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.scss';
 
-class App extends Component {
-  render() {
-    return (
-     <React.Fragment>
-        <div className="bodyOf"></div>
-     </React.Fragment>
-    );
-  }
-}
-
+const  App = () => (
+    <React.Fragment>
+        <Switch>
+            <Route exact path='/' component={} />
+            <Route  path='/' component={} />
+            <Route  path='/' component={} />
+        </Switch>
+    </React.Fragment>
+);
 export default App;
