@@ -20,4 +20,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-/.idea
+######################
+# Intellij
+######################
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+classes/

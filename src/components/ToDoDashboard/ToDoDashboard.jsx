@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 
-export default class MainPage extends Component {
+export default class ToDoDashboard extends Component {
     render() {
         return (
             <React.Fragment>
-                <div>Hello MainPage</div>
+                Hello ToDoDashboard
             </React.Fragment>
         );
     }
