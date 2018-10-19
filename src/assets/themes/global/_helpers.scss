@@ -1,4 +1,4 @@
-.pseudoclass {
+@mixin pseudoclass() {
 	content: "";
 	display: block;
 }

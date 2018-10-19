@@ -4,6 +4,9 @@ body {
 	height: 100vh;
 	width: 100vw;
 	position: relative;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	color: white;
 }
 
 ::selection {

@@ -1,12 +1,14 @@
 .main-page {
-//	display: none;
+//TODO	display: none;
 	text-align: center;
 	color: $color-white;
 	padding-top: 20vh;
+	
 	p {
 		font-size: $f-size-base;
 		margin-bottom: 25px;
 	}
+
 	h1 {
 		font-weight: 300;
 		margin-top: 25px;
@@ -17,7 +19,5 @@
 		@include button (80px);
 		margin-top: 40px;
 		position: relative;
-
 	}
-
 }

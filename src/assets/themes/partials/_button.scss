@@ -7,7 +7,6 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
-
 	&::before,
 	&::after {
 		@include pseudoclass;
@@ -22,8 +21,7 @@
 	}
 }
 
-
-.noteButton () {
+.noteButton {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
@@ -31,5 +29,4 @@
 	outline: none;
 	cursor: pointer;
 	padding: 4px;
-
 }
