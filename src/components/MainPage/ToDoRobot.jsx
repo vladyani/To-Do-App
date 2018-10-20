@@ -4,7 +4,7 @@ import robot from '../../assets/images/roboto.png'
 export default class ToDoRobot extends Component {
     render() {
         return (
-            <div>
+            <div className = "robot">
                 <img alt="Logo R2-D-DOO" src={robot} />
             </div>
         );

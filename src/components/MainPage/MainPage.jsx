@@ -8,8 +8,8 @@ export default class MainPage extends Component {
         return (
             <div className="main-page">
                 <ToDoCounter/>
-                <h1>Let's R2-D-DOOO!</h1>
                 <ToDoRobot/>
+                <h1>Let's R2-D-DOOO!</h1>
                 <ToDoButton className="start-btn"/>
             </div>
         );
