@@ -34,6 +34,7 @@ export default class ToDoForm extends Component {
 
     addNote = event => {
         event.preventDefault();
+        //TODO when local storage servise will be ready, we save note in local storage and we use redirect to route to to do dashboard component
         console.log(this.state.subject, this.state.deadline, this.state.priority, this.state.description);
     }
 
