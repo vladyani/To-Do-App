@@ -10,20 +10,19 @@
 
 	&::before,
 	&::after {
-		@include pseudoclass;
+		// @include pseudoclass;
 		background-color: $color-white;
 		width: 4px;
 		height: 50px;
 		position: absolute;
-		@include centre($axis: "both");
+		// @include centre($axis: "both");
 	}
 	&::after {
 		transform: translate(-50%, -50%) rotate(90deg);
 	}
 }
 
-
-.noteButton () {
+.noteButton{
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
@@ -31,5 +30,4 @@
 	outline: none;
 	cursor: pointer;
 	padding: 4px;
-
 }

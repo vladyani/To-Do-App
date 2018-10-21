@@ -1,8 +1,4 @@
-export const colors = [
-    {
-        className: '',
-        label: ''
-    },
+const colors = [
     {
         className: 'red',
         label: 'Red Circle'
@@ -16,3 +12,5 @@ export const colors = [
         label: 'Green Circle'
     }
 ];
+
+export default colors;
