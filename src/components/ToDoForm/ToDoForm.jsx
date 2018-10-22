@@ -3,6 +3,7 @@ import colors from './toDoForm.service';
 import './ToDoForm.scss';
 import { Select } from 'antd';
 import { DatePicker } from 'antd';
+import LocalStorageService from '../../common/service/localStorageService';
 
 const { Option } = Select;
 
@@ -34,8 +35,12 @@ export default class ToDoForm extends Component {
 
     addNote = event => {
         event.preventDefault();
-        //TODO when local storage servise will be ready, we save note in local storage and we use redirect to route to to do dashboard component
-        console.log(this.state.subject, this.state.deadline, this.state.priority, this.state.description);
+        LocalStorageService.createNote({
+            subject: this.state.subject,
+            deadline: this.state.deadline,
+            priority: this.state.priority,
+            description: this.state.description
+        });
     }
 
     render() {
@@ -51,7 +56,7 @@ export default class ToDoForm extends Component {
                         placeholder="Select priority"
                         onChange={this.handleChange}
                     >
-                        {colors.map(color => <Option value={color.className}>{color.label}</Option>)}
+                        {colors.map(color => <Option value={color.className} key={color.className}>{color.label}</Option>)}
                     </Select>
                     <textarea name="description" className="form-control" onChange={this.handleChange}
                         placeholder="What do you need to do?" required></textarea>
