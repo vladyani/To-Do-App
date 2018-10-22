@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 
-export default class ToDoButton extends Component {
-    render() {
-        return (
-            <React.Fragment>
-                <button className={this.props.className}></button>
-            </React.Fragment>
-        );
-    }
+const ToDoButton = (props) => {
+    return (
+        <React.Fragment>
+            <button className={props.btnClass}></button>
+        </React.Fragment>
+    )
 }
+
+export default ToDoButton;

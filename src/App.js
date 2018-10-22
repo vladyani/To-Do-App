@@ -4,7 +4,6 @@ import MainPage from "./components/MainPage/MainPage";
 import ToDoForm from "./components/ToDoForm/ToDoForm";
 import ToDoDashboard from "./components/ToDoDashboard/ToDoDashboard";
 
-
 const App = () => (
     <HashRouter>
         <Switch>

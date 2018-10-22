@@ -10,7 +10,7 @@ export default class MainPage extends Component {
                 <ToDoCounter/>
                 <ToDoRobot/>
                 <h1>Let's R2-D-DOOO!</h1>
-                <ToDoButton className="start-btn"/>
+                <ToDoButton btnClass="start-btn"/>
             </div>
         );
     }
