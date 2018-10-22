@@ -3,11 +3,9 @@
 	display: block;
 }
 
-
 a {
     cursor: pointer;
 }
-
 
 @mixin centre($axis: "both") {
     position: absolute;
