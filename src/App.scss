@@ -1,3 +1,21 @@
-@import './assets/themes/theme';
-@import './assets/themes/theme';
-@import './assets/themes/partials/base';
+@import "assets/themes/global/reset";
+@import "assets/themes/theme";
+@import "assets/themes/global/helpers";
+@import "assets/themes/partials/base";
+@import "assets/themes/partials/button";
+@import "assets/themes/partials/form";
+@import "assets/themes/partials/main";
+@import "assets/themes/partials/modal";
+@import "assets/themes/partials/notes";
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url('./assets/fonts/OpenSans/OpenSans-Regular.eot');
+  src: local('./assets/fonts/OpenSans/OpenSans-Regular'), local('OpenSans-Regular'),
+  url('./assets/fonts/OpenSans/OpenSans-Regular.eot?#iefix') format('embedded-opentype'),
+  url('./assets/fonts/OpenSans/OpenSans-Regular.woff2') format('woff2'),
+  url('./assets/fonts/OpenSans/OpenSans-Regular.woff') format('woff'),
+  url('./assets/fonts/OpenSans/OpenSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

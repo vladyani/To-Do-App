@@ -1,4 +1,4 @@
-@import '../global/helpers';
+@import '../global/helpers'; 
 
 @mixin button ($diameter) {
 	width: $diameter;
@@ -8,7 +8,6 @@
 	border: none;
 	outline: none;
 	cursor: pointer;
-
 	&::before,
 	&::after {
 		@include pseudoclass;
@@ -23,7 +22,7 @@
 	}
 }
 
-.noteButton{
+.noteButton {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
