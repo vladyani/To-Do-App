@@ -20,6 +20,9 @@
   font-style: normal;
 }
 
-body {
-  background: green;
+#app {
+  background: $color-bcg;
+  width: 100vw;
+  height: 100vh;
 }
+

@@ -1,14 +1,14 @@
 const colors = [
     {
-        className: 'red',
+        bcgColor: '#fc4d59',
         label: 'Red Circle'
     },
     {
-        className: 'yellow',
+        bcgColor: '#c3d500',
         label: 'Yellow Circle'
     },
     {
-        className: 'green',
+        bcgColor: '#4ad8a3',
         label: 'Green Circle'
     }
 ];

@@ -27,10 +27,7 @@ export default class ToDoForm extends Component {
     }
 
     handleDateChange = date => {
-        const dateString = date._d.toISOString().substr(0, 10);
-        this.setState({
-            deadline: dateString
-        })
+        date ? this.state.deadline = date._d.toISOString().substr(0, 10) : this.state.deadline = '';
     }
 
     addNote = event => {
@@ -47,19 +44,30 @@ export default class ToDoForm extends Component {
         return (
             <div className="content-wrapper">
                 <form className="note-form">
-                    <input type="text" className="form-control" onChange={this.handleChange}
-                        name="subject" placeholder="Subject" required />
-                    <DatePicker onChange={this.handleDateChange} />
-                    <Select
-                        showSearch
-                        style={{ width: 200 }}
-                        placeholder="Select priority"
-                        onChange={this.handleChange}
-                    >
-                        {colors.map(color => <Option value={color.className} key={color.className}>{color.label}</Option>)}
-                    </Select>
-                    <textarea name="description" className="form-control" onChange={this.handleChange}
-                        placeholder="What do you need to do?" required></textarea>
+                    <div className="form-control-wrapper">
+                        <input type="text" className="form-control" onChange={this.handleChange}
+                            name="subject" placeholder="Subject" required />
+                    </div>
+                    <div className="form-control-wrapper">
+                        <DatePicker onChange={this.handleDateChange} />
+                    </div>
+                    <div className="form-control-wrapper">
+                        <Select
+                            showSearch
+                            placeholder="Select priority"
+                            onChange={this.handleChange}>
+                            {colors.map((color, index) =>
+                                <Option
+                                    style={{ backgroundColor: color.bcgColor }}
+                                    value={color.label}
+                                    key={index}>{color.label}
+                                </Option>)}
+                        </Select>
+                    </div>
+                    <div className="form-control-wrapper">
+                        <textarea name="description" className="form-control" onChange={this.handleChange}
+                            placeholder="What do you need to do?" required></textarea>
+                    </div>
                     <button type="submit" className="add-note-btn" onClick={event => this.addNote(event)}></button>
                 </form>
             </div>
