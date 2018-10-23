@@ -7,6 +7,7 @@
 @import "assets/themes/partials/main";
 @import "assets/themes/partials/modal";
 @import "assets/themes/partials/notes";
+@import "assets/themes/global/toDoIcons.css";
 
 @font-face {
   font-family: 'Open Sans';
@@ -20,6 +21,8 @@
   font-style: normal;
 }
 
-body {
-  background: green;
+#app {
+  background: $color-bcg;
+  width: 100vw;
+  height: 100vh;
 }

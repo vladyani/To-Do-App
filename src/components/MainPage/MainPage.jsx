@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ToDoCounter from "./ToDoCounter";
-import ToDoRobot from "./ToDoRobot";
-import ToDoButton from "./ToDoButton";
+import ToDoButton from "../../common/components/ToDoButton/ToDoButton";
+import ToDoCounter from "./ToDoCounter/ToDoCounter";
+import ToDoRobot from "./ToDoRobot/ToDoRobot";
 
 export default class MainPage extends Component {
     render() {
@@ -10,7 +10,7 @@ export default class MainPage extends Component {
                 <ToDoCounter/>
                 <ToDoRobot/>
                 <h1>Let's R2-D-DOOO!</h1>
-                <ToDoButton btnClass="start-btn"/>
+                <ToDoButton btnClass="start-btn" routeTo="/todoform"/>
             </div>
         );
     }

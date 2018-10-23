@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import colors from './toDoForm.service';
 import './ToDoForm.scss';
-import { Select } from 'antd';
-import { DatePicker } from 'antd';
+import {Select} from 'antd';
+import {DatePicker} from 'antd';
 import LocalStorageService from '../../common/service/localStorageService';
+import {Redirect} from 'react-router-dom';
 
-const { Option } = Select;
+const {Option} = Select;
 
 export default class ToDoForm extends Component {
     constructor(props) {
@@ -14,24 +15,20 @@ export default class ToDoForm extends Component {
             subject: '',
             deadline: '',
             priority: '',
-            description: ''
+            description: '',
+            redirect: false
         }
     }
 
     handleChange = (event, value) => {
-        value ? this.setState({
-            priority: value.props.value
-        }) : this.setState({
-            [event.target.name]: event.target.value
-        });
-    }
+        value ? this.setState({priority: value.props.value})
+            : this.setState({[event.target.name]: event.target.value});
+    };
 
     handleDateChange = date => {
-        const dateString = date._d.toISOString().substr(0, 10);
-        this.setState({
-            deadline: dateString
-        })
-    }
+        date ? this.setState({deadline: date._d.toISOString().substr(0, 10)})
+            : this.setState({deadline: ''});
+    };
 
     addNote = event => {
         event.preventDefault();
@@ -41,26 +38,47 @@ export default class ToDoForm extends Component {
             priority: this.state.priority,
             description: this.state.description
         });
-    }
+        this.setState({redirect: true});
+    };
 
     render() {
+        if (this.state.redirect) return <Redirect to='/tododashboard'/>;
+
         return (
             <div className="content-wrapper">
                 <form className="note-form">
-                    <input type="text" className="form-control" onChange={this.handleChange}
-                        name="subject" placeholder="Subject" required />
-                    <DatePicker onChange={this.handleDateChange} />
-                    <Select
-                        showSearch
-                        style={{ width: 200 }}
-                        placeholder="Select priority"
-                        onChange={this.handleChange}
-                    >
-                        {colors.map(color => <Option value={color.className} key={color.className}>{color.label}</Option>)}
-                    </Select>
-                    <textarea name="description" className="form-control" onChange={this.handleChange}
-                        placeholder="What do you need to do?" required></textarea>
-                    <button type="submit" className="add-note-btn" onClick={event => this.addNote(event)}></button>
+                    <div className="form-control-wrapper">
+                        <input type="text" className="form-control" onChange={this.handleChange}
+                               name="subject" placeholder="Subject" required/>
+                    </div>
+                    <div className="form-control-wrapper">
+                        <DatePicker onChange={this.handleDateChange}/>
+                    </div>
+                    <div className="form-control-wrapper">
+                        <Select
+                            showSearch
+                            placeholder="Select priority"
+                            onChange={this.handleChange}>
+                            {colors.map((color, index) =>
+                                <Option
+                                    style={{backgroundColor: color.bcgColor}}
+                                    value={color.label}
+                                    key={index}>{color.label}
+                                </Option>)}
+                        </Select>
+                    </div>
+                    <div className="form-control-wrapper">
+                        <textarea name="description"
+                                  className="form-control"
+                                  onChange={this.handleChange}
+                                  placeholder="What do you need to do?"
+                                  required>
+                        </textarea>
+                    </div>
+                    <button type="submit"
+                            className="add-note-btn"
+                            onClick={event => this.addNote(event)}>
+                    </button>
                 </form>
             </div>
         );
