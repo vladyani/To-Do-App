@@ -4,9 +4,9 @@ const ToDoNotes = props => {
     return (
         <React.Fragment>
             {props.toDoNotes ?
-                props.toDoNotes.map((note) => {
+                props.toDoNotes.map((note, index) => {
                     return (
-                        <div className="note-container">
+                        <div className="note-container" key={index}>
                             <div className="note-body">
                                 <span className="note-btn-wrapper">
                                     <button className="btn-transparent">
@@ -15,7 +15,7 @@ const ToDoNotes = props => {
                                 </span>
                                 <h3>{note.deadline}</h3>
                                 <h3>{note.subject}</h3>
-                                <span class="note-btn-details-wrapper">
+                                <span className="note-btn-details-wrapper">
                                     <button className="btn-transparent note-btn-icon"
                                         style={{ background: "#fc4d59" }}>
                                         <span className="icon-edit"></span>

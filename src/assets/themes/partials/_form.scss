@@ -87,12 +87,6 @@
             height: 8rem;
         }
     }
-    
-    .add-note-btn {
-        @include button (80px);
-        margin-top: 1.7rem;
-        position: relative;
-    }
 }
 
 .ant-calendar {

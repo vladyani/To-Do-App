@@ -32,6 +32,19 @@
 	padding: 4px;
 }
 
+.add-note-btn {
+	@include button (80px);
+	margin-top: 1.7rem;
+	position: relative;
+}
+
+.btn-transparent {
+	box-shadow: none;
+	border: none;
+	background: transparent;
+	outline: none;
+}
+
 .btn-wrapper {
 	display:flex;
 	justify-content: center;
