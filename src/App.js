@@ -8,8 +8,8 @@ const App = () => (
     <HashRouter>
         <Switch>
             <Route exact path='/' component={MainPage}/>
-            <Route exact path='/todoform' component={ToDoForm}/>
-            <Route exact path='/tododashboard' component={ToDoDashboard}/>
+            <Route  path='/todoform' component={ToDoForm}/>
+            <Route  path='/tododashboard' component={ToDoDashboard}/>
         </Switch>
     </HashRouter>
 );
