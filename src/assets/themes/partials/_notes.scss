@@ -1,0 +1,16 @@
+@import '../theme';
+
+.note-list-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    .note-list-wrapper{
+        width: 60vw;
+        height: 60vh;
+        display:flex;
+        justify-content: space-around;
+        border: 1px solid $color-white;
+    }
+
+}
