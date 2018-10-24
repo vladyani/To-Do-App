@@ -46,7 +46,6 @@ export default class ToDoNotesList extends Component {
     };
 
     deleteNote = (noteId) => {
-        console.log(noteId);
         LocalStorageService.deleteNote(noteId);
         this.getNotes();
     };
