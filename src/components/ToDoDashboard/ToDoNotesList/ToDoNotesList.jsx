@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import ToDoNotes from './ToDoNotes/ToDoNotes';
 import LocalStorageService from '../../../common/service/localStorageService';
-import { notification, Icon } from 'antd';
+import { notification, Icon, Modal } from 'antd';
 import { Redirect } from 'react-router-dom';
+
 
 export default class ToDoNotesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
             toDoNotes: [],
-            page: 0
+            page: 0,
+            visible: false
         }
     }
 
@@ -45,10 +47,33 @@ export default class ToDoNotesList extends Component {
         // if(this.state.page) this.openNotification();
     };
 
+    confirmDeleteNote = (noteId) => {
+        Modal.confirm({
+            title: 'Do you want to delete these To Do\'s?',
+            content: 'This note will not come back, make sure you do the right thing :)',
+            onOk: () => {
+                this.deleteNote(noteId);
+            },
+            onCancel: () => { },
+        });
+    }
+
     deleteNote = (noteId) => {
         LocalStorageService.deleteNote(noteId);
         this.getNotes();
     };
+
+    toggleModal = () => {
+        this.setState({
+            visible: !this.state.visible
+        });
+    }
+
+    handleOk = (e) => {
+        this.setState({
+            visible: false,
+        });
+    }
 
     render() {
         const { toDoNotes, page } = this.state;
@@ -70,7 +95,11 @@ export default class ToDoNotesList extends Component {
                     </span>
                     <div className="note-list-wrapper">
                         {visibleToDoNotes ? visibleToDoNotes.map((toDoNote, index) =>
-                            <ToDoNotes toDoNote={toDoNote} deleteNote={this.deleteNote} key={index} />) : null}
+                            <ToDoNotes toDoNote={toDoNote}
+                                visible={this.state.visible}
+                                handleOk={this.handleOk}
+                                toggleModal={this.toggleModal}
+                                deleteNote={this.confirmDeleteNote} key={index} />) : null}
                     </div>
                     <span>
                         <button className={"btn-transparent"}
