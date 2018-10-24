@@ -1,0 +1,51 @@
+@import '../theme';
+
+.note-list-container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
+    .note-list-wrapper{
+        width: 60vw;
+        height: 60vh;
+        display:flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        border: 1px solid $color-white;
+        border-radius: 6px;
+    }
+}
+
+.note-container {
+    max-height: 44%;
+    flex-basis: 26%;
+    margin: 1rem 0;
+    border-radius: 8px;
+    background: $color-box;
+
+    .note-body {
+        position: relative;
+        height: 94%;
+    }
+
+    .note-btn-icon {
+        width: 1.3rem;
+        border-radius: 50%;
+        margin: 0 0.2rem;
+    }
+
+    .note-btn-details-wrapper{
+        position:absolute;
+        bottom: 0;
+        right:0;
+        padding: 0 0.5rem;
+    }
+
+    .note-btn-wrapper{
+        position:absolute;
+        top: 0;
+        right:0;
+        padding: 0 0.5rem;
+    }
+
+}
