@@ -29,12 +29,21 @@ export default class ToDoForm extends Component {
             : this.setState({ deadline: '' });
     };
 
+    setPriorityId = priority => {
+        let priorityId;
+        colors.forEach((color, index) =>
+            priority === color.bcgColor ? priorityId = color.priorityId : null);
+        return priorityId;
+    }
+
     addNote = event => {
         event.preventDefault();
         LocalStorageService.createNote({
+            noteId: Date.now() + Math.random(),
             subject: this.state.subject,
             deadline: this.state.deadline,
             priority: this.state.priority,
+            priorityId: this.setPriorityId(this.state.priority),
             description: this.state.description
         });
         this.setState({ redirect: true });

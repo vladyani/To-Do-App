@@ -16,6 +16,13 @@ export default {
             toDoNotes.push(note);
             localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
         }
+    },
+    deleteNote(noteId) {
+        const toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
+        let indexOfNote = toDoNotes.findIndex(note => note.noteId === noteId);
+        console.log(indexOfNote);
+        toDoNotes.splice(indexOfNote, 1);
+        localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
     }
 }
 
