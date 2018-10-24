@@ -34,18 +34,24 @@ export default class ToDoNotesList extends Component {
     };
 
     render() {
+        const {toDoNotes, page} = this.state;
+
+        const itemsToDisplay = 6;
+        const startIndex = page * itemsToDisplay;
+        const visibleToDoNotes = toDoNotes ? toDoNotes.slice(startIndex, startIndex + itemsToDisplay) : null;
+        console.log(visibleToDoNotes);
         return (
             <React.Fragment>
-                <h1>{this.state.page}</h1>
+                <h1>{page}</h1>
                 <div className="note-list-container">
-                    <span><button onClick={this.showPreviousPage} disabled={!this.state.page}>previous</button></span>
+                    <span><button onClick={this.showPreviousPage} disabled={!page}>previous</button></span>
                     <div className="note-list-wrapper">
-                        {this.state.toDoNotes.map((toDoNote, index) => <ToDoNotes toDoNote={toDoNote} key={index}/>)}
+                        {visibleToDoNotes ? visibleToDoNotes.map((toDoNote, index) =>
+                            <ToDoNotes toDoNote={toDoNote} key={index}/>) : null}
                     </div>
                     <span><button onClick={this.showNextPage}>next</button></span>
                 </div>
             </React.Fragment>
         )
     }
-
 }

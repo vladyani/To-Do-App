@@ -17,7 +17,8 @@
 }
 
 .note-container {
-    flex-basis: 21%;
+    max-height: 44%;
+    flex-basis: 26%;
     margin: 1rem 0;
     border-radius: 8px;
     background: $color-box;
