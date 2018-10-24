@@ -61,7 +61,7 @@ export default class ToDoForm extends Component {
                             {colors.map((color, index) =>
                                 <Option
                                     style={{ backgroundColor: color.bcgColor }}
-                                    value={color.label}
+                                    value={color.bcgColor}
                                     key={index}>{color.label}
                                 </Option>)}
                         </Select>
