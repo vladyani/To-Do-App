@@ -5,7 +5,7 @@ import ToDoMenu from './ToDoMenu/ToDoMenu.jsx';
 export default class ToDoHeader extends Component {
     render() {
         return(
-            <div className="noteHeader">
+            <div className="note-header-container">
                 <ToDoSortNotes />
                 <ToDoMenu />
             </div>

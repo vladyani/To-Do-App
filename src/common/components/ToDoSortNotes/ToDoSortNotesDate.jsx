@@ -8,8 +8,8 @@ export default class ToDoSortNotesDate extends Component {
     render() {
         return(
             <React.Fragment>
-                <Option value="Date: Newest First" data-direction="desc" onClick={e=>this.changeDirection(e)}> Date: Newest First </Option> 
-                <Option value="Date: Oldest First" data-direction="asc" onClick={e=>this.changeDirection(e)}>Date: Oldest First </Option> 
+                <option value="Date: Newest First" data-direction="desc" onClick={e=>this.changeDirection(e)}> Date: Newest First </option> 
+                <option value="Date: Oldest First" data-direction="asc" onClick={e=>this.changeDirection(e)}>Date: Oldest First </option> 
             </React.Fragment>
         )
     }
