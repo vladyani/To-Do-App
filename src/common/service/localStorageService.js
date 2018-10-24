@@ -4,9 +4,18 @@ export default {
         return toDoNotes;
     },
     createNote(note) {
-        const toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
-        toDoNotes.push(note);
-        localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
+        let toDoNotes;
+        const isNotesExist = JSON.parse(localStorage.getItem('ToDoNotes'));
+        if (isNotesExist) {
+            toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
+            toDoNotes.push(note);
+            localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
+        } else {
+            localStorage.setItem('ToDoNotes', JSON.stringify([]));
+            toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
+            toDoNotes.push(note);
+            localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
+        }
     }
 }
 

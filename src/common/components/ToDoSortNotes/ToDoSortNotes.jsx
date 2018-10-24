@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import LocalStorageService from '../../service/localStorageService';
 import {Select} from 'antd';
-
 import ToDoSortNotesDate from './ToDoSortNotesDate';
 import ToDoSortNotesPriority from './ToDoSortNotesPriority';
 
