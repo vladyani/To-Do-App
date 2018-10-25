@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import LocalStorageService from '../../service/localStorageService';
-// import {Select} from 'antd';
+// TODO import {Select} from 'antd';
 import options from './toDoSort.service';
-
-
-
-// const { Option } = Select;
+// TODO const { Option } = Select;
 
 export default class ToDoSort extends Component {
     constructor(props){
@@ -17,25 +14,33 @@ export default class ToDoSort extends Component {
         }
     }
 
-
     sortByDeadline = (key) => {
         this.setState({
-            toDoNotes: this.state.notes.reverse().sort((a, b) => {
-                return this.state.direction[key] === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
+            toDoNotes: this.state.toDoNotes.reverse().sort((a, b) => {
+                return this.state.direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
             }), 
         });
     };
 
+    sortByPriority = (key) => {
+        this.setState({
+            toDoNotes: this.state.toDoNotes.reverse().sort((a, b) => {
+                console.log(a[key]);
+                return this.state.direction === 'asc' ? a[key] - b[key] : b[key] - a[key];
+            })
+        })  
+    }
 
     handleChange = (e) => {
         let index = e.target.selectedIndex;
         this.setState({
             direction: e.target[index].getAttribute('data-way'),
             typeOfSort: e.target[index].getAttribute('data-type')
-         
-        })
+        }, () => {
+            (this.state.typeOfSort === "date") ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId")
+        });
     }
-
+        
     render() {
         console.log(this.state.notes);
         console.log(this.state.direction);
@@ -46,11 +51,13 @@ export default class ToDoSort extends Component {
                 style={{width: "10rem"}}
                 onChange={e=>this.handleChange(e)}>
                 {options.map((option, index) => 
-                <option key={index} value={option.value} data-type={option.typeOfSort} data-way={option.wayOfSort}>{option.value}</option>
+                <option key={index} 
+                        value={option.value} 
+                        data-type={option.typeOfSort} 
+                        data-way={option.wayOfSort}>{option.value}</option>
                 )}
             </select>
             </React.Fragment>
-
         )
     }
 }
