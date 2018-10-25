@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ToDoNotes from './ToDoNotes/ToDoNotes';
 import LocalStorageService from '../../../common/service/localStorageService';
-import { notification, Icon, Modal } from 'antd';
-import { Redirect } from 'react-router-dom';
-
+import {notification, Icon, Modal} from 'antd';
 
 export default class ToDoNotesList extends Component {
     constructor(props) {
@@ -11,7 +9,8 @@ export default class ToDoNotesList extends Component {
         this.state = {
             toDoNotes: [],
             page: 0,
-            visible: false
+            visible: false,
+            currSubject: ''
         }
     }
 
@@ -47,15 +46,20 @@ export default class ToDoNotesList extends Component {
         // if(this.state.page) this.openNotification();
     };
 
-    confirmDeleteNote = (noteId) => {
-        Modal.confirm({
-            title: 'Do you want to delete these To Do\'s?',
-            content: 'This note will not come back, make sure you do the right thing :)',
-            onOk: () => {
-                this.deleteNote(noteId);
-            },
-            onCancel: () => { },
-        });
+    confirmDeleteNote = (noteId, isActive) => {
+        if (isActive) {
+            Modal.confirm({
+                title: 'Do you want to delete these To Do\'s?',
+                content: 'This note will not come back, make sure you do the right thing :)',
+                onOk: () => {
+                    this.deleteNote(noteId);
+                },
+                onCancel: () => {
+                },
+            });
+        } else {
+            this.deleteNote(noteId);
+        }
     };
 
     deleteNote = (noteId) => {
@@ -63,9 +67,11 @@ export default class ToDoNotesList extends Component {
         this.getNotes();
     };
 
-    toggleModal = () => {
+    toggleModal = (currSubject) => {
+        console.log('metoda curr subject');
         this.setState({
-            visible: !this.state.visible
+            visible: !this.state.visible,
+            currSubject: currSubject
         });
     };
 
@@ -76,7 +82,7 @@ export default class ToDoNotesList extends Component {
     };
 
     render() {
-        const { toDoNotes, page } = this.state;
+        const {toDoNotes, page} = this.state;
 
         const itemsToDisplay = 6;
         const startIndex = page * itemsToDisplay;
@@ -88,25 +94,26 @@ export default class ToDoNotesList extends Component {
                 <div className="note-list-container">
                     <span>
                         <button className={"btn-transparent"}
-                            onClick={this.showPreviousPage} disabled={!page}>
+                                onClick={this.showPreviousPage} disabled={!page}>
                             <span className={"icon-left-arrow"}
-                                style={{ fontSize: "4rem", cursor: "pointer" }}></span>
+                                  style={{fontSize: "4rem", cursor: "pointer"}}></span>
                         </button>
                     </span>
                     <div className="note-list-wrapper">
                         {visibleToDoNotes ? visibleToDoNotes.map((toDoNote, index) =>
                             <ToDoNotes toDoNote={toDoNote}
-                                visible={this.state.visible}
-                                handleOk={this.handleOk}
-                                toggleModal={this.toggleModal}
-                                deleteNote={this.confirmDeleteNote}
-                                key={index} />) : null}
+                                       visible={this.state.visible}
+                                       handleOk={this.handleOk}
+                                       toggleModal={() => this.toggleModal(toDoNote.subject)}
+                                       currSubject={this.state.currSubject}
+                                       confirmDeleteNote={this.confirmDeleteNote}
+                                       key={index}/>) : null}
                     </div>
                     <span>
                         <button className={"btn-transparent"}
-                            onClick={this.showNextPage}>
+                                onClick={this.showNextPage}>
                             <span className={"icon-right-arrow"}
-                                style={{ fontSize: "4rem", cursor: "pointer" }}></span>
+                                  style={{fontSize: "4rem", cursor: "pointer"}}></span>
                         </button>
                     </span>
                 </div>

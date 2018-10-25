@@ -2,7 +2,8 @@ import React from 'react';
 import ToDoModal from '../../../../common/components/ToDoModal/ToDoModal';
 
 const ToDoNotes = props => {
-    const { deadline, subject, description, priority, noteId } = props.toDoNote;
+    console.log(props.currSubject);
+    const { deadline, subject, description, priority, noteId, isActive } = props.toDoNote;
 
     return (
         <React.Fragment>
@@ -16,7 +17,7 @@ const ToDoNotes = props => {
             <div className="note-container" style={{ boxShadow: `0 0 0 1px ${priority}` }}>
                 <div className="note-body">
                     <span className="note-btn-wrapper">
-                        <button className="btn-transparent" onClick={() => props.deleteNote(noteId)}>
+                        <button className="btn-transparent" onClick={() => props.confirmDeleteNote(noteId, isActive)}>
                             <span className="icon-trash"></span>
                         </button>
                     </span>
