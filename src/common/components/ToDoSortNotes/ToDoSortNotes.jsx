@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import LocalStorageService from '../../service/localStorageService';
-import {Select} from 'antd';
+// import {Select} from 'antd';
+import options from './toDoSort.service';
 
 
 
-const { Option } = Select;
+// const { Option } = Select;
 
 export default class ToDoSort extends Component {
     constructor(props){
@@ -12,11 +13,12 @@ export default class ToDoSort extends Component {
         this.state = {
             toDoNotes: LocalStorageService.findNotes(),
             direction: "",
+            typeOfSort: "",
         }
     }
 
 
-    sortByDates = (key) => {
+    sortByDeadline = (key) => {
         this.setState({
             toDoNotes: this.state.notes.reverse().sort((a, b) => {
                 return this.state.direction[key] === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
@@ -25,24 +27,28 @@ export default class ToDoSort extends Component {
     };
 
 
-    handleChange = e => {
-
+    handleChange = (e) => {
+        let index = e.target.selectedIndex;
+        this.setState({
+            direction: e.target[index].getAttribute('data-way'),
+            typeOfSort: e.target[index].getAttribute('data-type')
+         
+        })
     }
 
     render() {
         console.log(this.state.notes);
+        console.log(this.state.direction);
         return(
             <React.Fragment>
-            <Select  
+            <select  
                 placeholder="Sort By"
                 style={{width: "10rem"}}
-                onChange={e=>this.handleChange(e)}
-            >
-                <Option value="Newest to Oldest" data-type="date" data-sortWay="desc">Newest to Oldest</Option>
-                <Option value="Oldest to Newest" data-type="date" data-sortWay="asc" >Oldest to Newest</Option>
-                <Option value="The most important" data-type="priority" data-sortWay="asc">The most important</Option>
-                <Option value="The least important" data-type="priority" data-sortWay="desc">The least important</Option>
-            </Select>
+                onChange={e=>this.handleChange(e)}>
+                {options.map((option, index) => 
+                <option key={index} value={option.value} data-type={option.typeOfSort} data-way={option.wayOfSort}>{option.value}</option>
+                )}
+            </select>
             </React.Fragment>
 
         )
