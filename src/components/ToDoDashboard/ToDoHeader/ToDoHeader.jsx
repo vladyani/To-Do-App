@@ -6,8 +6,11 @@ export default class ToDoHeader extends Component {
     render() {
         return(
             <div className="note-header-container">
-                <ToDoSortNotes />
-                <ToDoMenu />
+                <span className = "header-wrapper">
+                    <ToDoSortNotes />
+                    <ToDoMenu />
+                </span>
+
             </div>
         )
     }

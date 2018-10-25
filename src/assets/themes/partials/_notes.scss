@@ -51,9 +51,29 @@
 
 }
 
-
 .note-header-container {
     display:flex;
     justify-content: center;
     align-items: center;
+
+    .header-wrapper {
+        display:flex;
+        width: 60vw;
+        height: 5vh;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid $color-white;
+        border-radius: 6px;
+
+        .ant-select-selection {
+            background-color: $color-box;
+            outline: none;
+            border: none;    
+        }
+
+        .anticon {
+            color: $color-white;
+            cursor: pointer;
+        }
+    }
 }
