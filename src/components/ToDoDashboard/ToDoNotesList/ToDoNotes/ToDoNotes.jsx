@@ -1,20 +1,18 @@
 import React from 'react';
-import LocalStorageService from '../../../../common/service/localStorageService';
-import { Modal } from 'antd';
+import ToDoModal from '../../../../common/components/ToDoModal/ToDoModal';
 
 const ToDoNotes = props => {
     const { deadline, subject, description, priority, noteId } = props.toDoNote;
 
     return (
         <React.Fragment>
-            <Modal
-                title={subject}
+            <ToDoModal
+                subject={subject}
                 visible={props.visible}
-                onOk={props.handleOk}
-                onCancel={props.toggleModal}>
-                <p>Description: </p>
-                <p>{description}</p>
-            </Modal>
+                handleOk={props.handleOk}
+                toggleModal={props.toggleModal}
+                description={description}>
+            </ToDoModal>
             <div className="note-container" style={{ boxShadow: `0 0 0 1px ${priority}` }}>
                 <div className="note-body">
                     <span className="note-btn-wrapper">
