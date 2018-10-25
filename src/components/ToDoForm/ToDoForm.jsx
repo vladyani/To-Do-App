@@ -44,7 +44,8 @@ export default class ToDoForm extends Component {
             deadline: this.state.deadline,
             priority: this.state.priority,
             priorityId: this.setPriorityId(this.state.priority),
-            description: this.state.description
+            description: this.state.description,
+            isActive: true
         });
         this.setState({ redirect: true });
     };
