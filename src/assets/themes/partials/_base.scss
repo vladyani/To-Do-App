@@ -1,22 +1,22 @@
 body {
-	background-color: $color-bcg;
-	font-family: 'Open Sans', sans-serif;
-	height: 100vh;
-	width: 100vw;
-	position: relative;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: white;
+  background-color: $color-bcg;
+  font-family: 'Open Sans', sans-serif;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
 }
 
 .content-wrapper {
-	display:flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-	width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 ::selection {
-	 color: $color-accent;
+  color: $color-accent;
 }

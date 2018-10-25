@@ -10,7 +10,7 @@ export default class ToDoNotesList extends Component {
             toDoNotes: [],
             page: 0,
             visible: false,
-            currSubject: ''
+            currToDoNote: {}
         }
     }
 
@@ -67,12 +67,15 @@ export default class ToDoNotesList extends Component {
         this.getNotes();
     };
 
-    toggleModal = (currSubject) => {
-        console.log('metoda curr subject');
-        this.setState({
-            visible: !this.state.visible,
-            currSubject: currSubject
-        });
+    toggleModal = (currToDoNote) => {
+        const {visible} = this.state;
+
+        !visible ? this.setState({
+            visible: !visible,
+            currToDoNote: currToDoNote,
+        }) : this.setState({
+            visible: !visible,
+        })
     };
 
     handleOk = () => {
@@ -104,8 +107,8 @@ export default class ToDoNotesList extends Component {
                             <ToDoNotes toDoNote={toDoNote}
                                        visible={this.state.visible}
                                        handleOk={this.handleOk}
-                                       toggleModal={() => this.toggleModal(toDoNote.subject)}
-                                       currSubject={this.state.currSubject}
+                                       toggleModal={() => this.toggleModal(toDoNote)}
+                                       currToDoNote={this.state.currToDoNote}
                                        confirmDeleteNote={this.confirmDeleteNote}
                                        key={index}/>) : null}
                     </div>
