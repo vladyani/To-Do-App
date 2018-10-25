@@ -34,7 +34,7 @@ export default class ToDoForm extends Component {
         colors.forEach((color, index) =>
             priority === color.bcgColor ? priorityId = color.priorityId : null);
         return priorityId;
-    }
+    };
 
     addNote = event => {
         event.preventDefault();

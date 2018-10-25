@@ -56,7 +56,7 @@ export default class ToDoNotesList extends Component {
             },
             onCancel: () => { },
         });
-    }
+    };
 
     deleteNote = (noteId) => {
         LocalStorageService.deleteNote(noteId);
@@ -67,13 +67,13 @@ export default class ToDoNotesList extends Component {
         this.setState({
             visible: !this.state.visible
         });
-    }
+    };
 
     handleOk = () => {
         this.setState({
             visible: false,
         });
-    }
+    };
 
     render() {
         const { toDoNotes, page } = this.state;
