@@ -69,7 +69,7 @@ export default class ToDoNotesList extends Component {
         });
     }
 
-    handleOk = (e) => {
+    handleOk = () => {
         this.setState({
             visible: false,
         });
@@ -99,7 +99,8 @@ export default class ToDoNotesList extends Component {
                                 visible={this.state.visible}
                                 handleOk={this.handleOk}
                                 toggleModal={this.toggleModal}
-                                deleteNote={this.confirmDeleteNote} key={index} />) : null}
+                                deleteNote={this.confirmDeleteNote}
+                                key={index} />) : null}
                     </div>
                     <span>
                         <button className={"btn-transparent"}
