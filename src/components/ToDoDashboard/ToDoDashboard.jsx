@@ -33,7 +33,6 @@ export default class ToDoDashboard extends Component {
     };
 
     showNextPage = () => {
-        console.log(this.state.currentState)
         const { itemsPerPage, page } = this.state;
         this.setState({
             page: page + 1,
@@ -86,10 +85,7 @@ export default class ToDoDashboard extends Component {
     };
 
     stateSetter = currentState => {
-        console.log(currentState)
-        this.setState({
-            toDoNotes: currentState
-        })
+        this.setState({ toDoNotes: currentState })
     };
 
     render() {
@@ -97,7 +93,7 @@ export default class ToDoDashboard extends Component {
 
         return (
             <React.Fragment>
-                <ToDoHeader toDoNotes={toDoNotes}
+                <ToDoHeader
                     itemsPerPage={itemsPerPage}
                     page={page}
                     stateSetter={this.stateSetter}
