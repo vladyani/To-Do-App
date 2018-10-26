@@ -66,14 +66,10 @@ const sortByNumbers = (notes, key, direction) =>
     notes.sort((a, b) => direction === 'asc' ? a[key] - b[key] : b[key] - a[key]);
 
 const sortByDates = (notes, key, direction) => {
-    const sorter = notes.sort((a, b) => {
-        console.log('jestem kluczem a z sortowania ',a[key]);
-        console.log('jestem kluczem b z sortowania ',a[key]);
-        return direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
-    })
-    console.log('jestem sorter', notes);
-    console.log('jestem  sorter', key);
-    console.log('jestem  sorter', direction);
+    const sorter = notes.sort((a, b) =>
+        direction !== 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
+    );
+
     console.log('jestem sorter by daty', sorter);
     return sorter;
 };

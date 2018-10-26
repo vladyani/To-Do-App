@@ -39,6 +39,7 @@ export default class ToDoSort extends Component {
             this.state.typeOfSort === "date" ?
                 this.sortByDeadline(itemsPerPage, page, "deadline", this.state.direction)
                 : this.sortByPriority(itemsPerPage, page, "priorityId", this.state.direction);
+
             this.props.stateSetter(this.state.sortedNotes);
         });
     };

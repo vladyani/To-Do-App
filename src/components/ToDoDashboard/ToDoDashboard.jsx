@@ -87,13 +87,15 @@ export default class ToDoDashboard extends Component {
         this.setState({
             toDoNotes: currentState
         })
+        this.forceUpdate();
     };
 
     render() {
         const {toDoNotes, itemsPerPage, page} = this.state;
         return (
             <React.Fragment>
-                <ToDoHeader itemsPerPage={itemsPerPage}
+                <ToDoHeader toDoNotes={toDoNotes}
+                            itemsPerPage={itemsPerPage}
                             page={page}
                             stateSetter={this.stateSetter}
                 />
