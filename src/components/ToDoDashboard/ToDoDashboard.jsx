@@ -31,7 +31,6 @@ export default class ToDoDashboard extends Component {
             page: page + 1
         }, () => {
             let pageNumber = page + 1;
-            console.log(pageNumber)
             this.getNotes(itemsPerPage, pageNumber);
         });
     };
@@ -50,7 +49,6 @@ export default class ToDoDashboard extends Component {
             page: page - 1
         }, () => {
             let pageNumber = page - 1;
-            console.log(pageNumber)
             this.getNotes(itemsPerPage, pageNumber);
         });
         // if(this.state.page) this.openNotification();
