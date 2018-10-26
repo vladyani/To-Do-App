@@ -1,19 +1,16 @@
 import React from 'react';
-import ToDoModal from '../../../../common/components/ToDoModal/ToDoModal';
+import ToDoEditModal from '../../../../common/components/ToDoEditModal/ToDoEditModal';
 
 const ToDoNotes = props => {
-    console.log(props.currSubject);
-    const { deadline, subject, description, priority, noteId, isActive } = props.toDoNote;
-
+    const { deadline, subject, priority, noteId, isActive } = props.toDoNote;
     return (
         <React.Fragment>
-            <ToDoModal
-                subject={subject}
+            <ToDoEditModal
                 visible={props.visible}
                 handleOk={props.handleOk}
                 toggleModal={props.toggleModal}
-                description={description}>
-            </ToDoModal>
+                currToDoNote={props.currToDoNote}>
+            </ToDoEditModal>
             <div className="note-container" style={{ boxShadow: `0 0 0 1px ${priority}` }}>
                 <div className="note-body">
                     <span className="note-btn-wrapper">

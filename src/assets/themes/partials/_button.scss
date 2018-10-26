@@ -1,51 +1,51 @@
-@import '../global/helpers'; 
+@import '../global/helpers';
 
-@mixin button ($diameter) {
-	width: $diameter;
-	height: $diameter;
-	background-color: $color-accent;
-	border-radius: 50%;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	&::before,
-	&::after {
-		@include pseudoclass;
-		background-color: $color-white;
-		width: 4px;
-		height: 50px;
-		position: absolute;
-		@include centre($axis: "both");
-	}
-	&::after {
-		transform: translate(-50%, -50%) rotate(90deg);
-	}
+@mixin button($diameter) {
+  width: $diameter;
+  height: $diameter;
+  background-color: $color-accent;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  &::before,
+  &::after {
+    @include pseudoclass;
+    background-color: $color-white;
+    width: 4px;
+    height: 50px;
+    position: absolute;
+    @include centre($axis: "both");
+  }
+  &::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
 }
 
 .noteButton {
-	width: 30px;
-	height: 30px;
-	border-radius: 50%;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 4px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 4px;
 }
 
 .add-note-btn {
-	@include button (80px);
-	margin-top: 1.7rem;
-	position: relative;
+  @include button (80px);
+  margin-top: 1.7rem;
+  position: relative;
 }
 
 .btn-transparent {
-	box-shadow: none;
-	border: none;
-	background: transparent;
-	outline: none;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  outline: none;
 }
 
 .btn-wrapper {
-	display:flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }

@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ToDoNotes from './ToDoNotes/ToDoNotes';
 import LocalStorageService from '../../../common/service/localStorageService';
-import {notification, Icon, Modal} from 'antd';
+import { notification, Icon, Modal } from 'antd';
 
 export default class ToDoNotesList extends Component {
     constructor(props) {
@@ -9,26 +9,32 @@ export default class ToDoNotesList extends Component {
         this.state = {
             toDoNotes: [],
             page: 0,
+            itemsPerPage: 6,
             visible: false,
-            currSubject: ''
+            currToDoNote: {}
         }
     }
 
     
     componentDidMount() {
-        this.getNotes();
+        this.getNotes(this.state.itemsPerPage, this.state.page);
     }
 
-    getNotes = () => {
+    //force is optional argument, if you pass it then it will load all results from local storage object
+    getNotes = (itemsPerPage, page) => {
         this.setState({
-            toDoNotes: LocalStorageService.findNotes()
+            toDoNotes: LocalStorageService.findAndPaginateNotes(itemsPerPage, page)
         })
     };
 
     showNextPage = () => {
+        const { itemsPerPage, page } = this.state;
         this.setState({
-            page: this.state.page + 1
-        })
+            page: page + 1
+        }, () => {
+            let pageNumber = page + 1;
+            this.getNotes(itemsPerPage, pageNumber);
+        });
     };
 
     // openNotification = () => {
@@ -40,10 +46,13 @@ export default class ToDoNotesList extends Component {
     // };
 
     showPreviousPage = () => {
+        const { itemsPerPage, page } = this.state;
         this.setState({
-            page: this.state.page - 1
+            page: page - 1
+        }, () => {
+            let pageNumber = page - 1;
+            this.getNotes(itemsPerPage, pageNumber);
         });
-
         // if(this.state.page) this.openNotification();
     };
 
@@ -65,15 +74,18 @@ export default class ToDoNotesList extends Component {
 
     deleteNote = (noteId) => {
         LocalStorageService.deleteNote(noteId);
-        this.getNotes();
+        this.getNotes(this.state.itemsPerPage, this.state.page);
     };
 
-    toggleModal = (currSubject) => {
-        console.log('metoda curr subject');
-        this.setState({
-            visible: !this.state.visible,
-            currSubject: currSubject
-        });
+    toggleModal = (currToDoNote) => {
+        const { visible } = this.state;
+
+        !visible ? this.setState({
+            visible: !visible,
+            currToDoNote: currToDoNote,
+        }) : this.setState({
+            visible: !visible,
+        })
     };
 
     handleOk = () => {
@@ -83,11 +95,7 @@ export default class ToDoNotesList extends Component {
     };
 
     render() {
-        const {toDoNotes, page} = this.state;
-
-        const itemsToDisplay = 6;
-        const startIndex = page * itemsToDisplay;
-        const visibleToDoNotes = toDoNotes ? toDoNotes.slice(startIndex, startIndex + itemsToDisplay) : null;
+        const { toDoNotes, page } = this.state;
 
         return (
             <React.Fragment>
@@ -95,26 +103,26 @@ export default class ToDoNotesList extends Component {
                 <div className="note-list-container">
                     <span>
                         <button className={"btn-transparent"}
-                                onClick={this.showPreviousPage} disabled={!page}>
+                            onClick={this.showPreviousPage} disabled={!page}>
                             <span className={"icon-left-arrow"}
-                                  style={{fontSize: "4rem", cursor: "pointer"}}></span>
+                                style={{ fontSize: "4rem", cursor: "pointer" }}></span>
                         </button>
                     </span>
                     <div className="note-list-wrapper">
-                        {visibleToDoNotes ? visibleToDoNotes.map((toDoNote, index) =>
+                        {toDoNotes ? toDoNotes.map((toDoNote, index) =>
                             <ToDoNotes toDoNote={toDoNote}
-                                       visible={this.state.visible}
-                                       handleOk={this.handleOk}
-                                       toggleModal={() => this.toggleModal(toDoNote.subject)}
-                                       currSubject={this.state.currSubject}
-                                       confirmDeleteNote={this.confirmDeleteNote}
-                                       key={index}/>) : null}
+                                visible={this.state.visible}
+                                handleOk={this.handleOk}
+                                toggleModal={() => this.toggleModal(toDoNote)}
+                                currToDoNote={this.state.currToDoNote}
+                                confirmDeleteNote={this.confirmDeleteNote}
+                                key={index} />) : null}
                     </div>
                     <span>
                         <button className={"btn-transparent"}
-                                onClick={this.showNextPage}>
+                            onClick={this.showNextPage}>
                             <span className={"icon-right-arrow"}
-                                  style={{fontSize: "4rem", cursor: "pointer"}}></span>
+                                style={{ fontSize: "4rem", cursor: "pointer" }}></span>
                         </button>
                     </span>
                 </div>
