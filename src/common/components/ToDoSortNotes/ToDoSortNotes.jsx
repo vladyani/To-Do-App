@@ -8,11 +8,23 @@ export default class ToDoSort extends Component {
     constructor(props){
         super(props);
         this.state = {
-            toDoNotes: LocalStorageService.findNotes(),
+            toDoNotes: [],
             direction: "",
             typeOfSort: "",
         }
     }
+
+
+    componentDidMount() {
+        this.getNotes();
+    }
+
+    getNotes = () => {
+        this.setState({
+            toDoNotes: LocalStorageService.findNotes()
+        })
+    };
+
 
     sortByDeadline = (key) => {
         this.setState({

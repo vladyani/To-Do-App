@@ -3,11 +3,14 @@ import ToDoSortNotes from '../../../common/components/ToDoSortNotes/ToDoSortNote
 import ToDoMenu from './ToDoMenu/ToDoMenu.jsx';
 
 export default class ToDoHeader extends Component {
+   updateSortedNotes = (updatedNotes) => {
+       this.props.onUpdateSortedNotes(updatedNotes);
+   }
     render() {
         return(
             <div className="note-header-container">
                 <span className = "header-wrapper">
-                    <ToDoSortNotes />
+                    <ToDoSortNotes updateSortedNotes = {this.updateSortedNotes}/>
                     <ToDoMenu />
                 </span>
 

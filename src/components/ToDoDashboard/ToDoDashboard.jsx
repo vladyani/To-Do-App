@@ -3,14 +3,17 @@ import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
 import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
 import ToDoHeader from './ToDoHeader/ToDoHeader';
 
-const ToDoDashboard = () => (
-    <React.Fragment>
-        <ToDoHeader />
-        <ToDoNotesList/>
-        <div className="btn-wrapper">
-            <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
-        </div>
-    </React.Fragment>
-);
+export default class ToDoDashboard extends React.Component {
 
-export default ToDoDashboard;
+    render() {
+        return(
+            <React.Fragment>
+            <ToDoHeader onUpdateSortedNotes={this.onUpdateSortedNotes}/>
+            <ToDoNotesList onUpdateSortedNotes={this.onUpdateSortedNotes}/>
+            <div className="btn-wrapper">
+                <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
+            </div>
+        </React.Fragment>
+        )
+    }
+}
