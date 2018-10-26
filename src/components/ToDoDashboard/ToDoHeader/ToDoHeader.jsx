@@ -11,7 +11,8 @@ const ToDoHeader = (props) => {
     return (
         <div className="note-header-container">
                 <span className="header-wrapper">
-                    <ToDoSortNotes notesToSort={props.notesToSort}
+                    <ToDoSortNotes itemsPerPage={props.itemsPerPage}
+                                   page={props.page}
                                    stateSetter={props.stateSetter}/>
                     <ToDoMenu/>
                 </span>

@@ -1,47 +1,50 @@
 import React, {Component} from 'react';
 // TODO import {Select} from 'antd';
 import options from './toDoSort.service';
+import LocalStorageService from "../../service/localStorageService";
 // TODO const { Option } = Select;
 
 export default class ToDoSort extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            sortedNotes: [],
             direction: "",
             typeOfSort: ""
         }
     }
 
-    sortByDeadline = (key) => {
+    sortByDeadline = (itemsPerPage, page, key, direction) => {
+        console.log('sortByDeadline',itemsPerPage, page, key, direction);
         this.setState({
-            toDoNotes: this.props.notesToSort.sort((a, b) =>
-                this.state.direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
-            ),
-        });
+            sortedNotes: LocalStorageService.sortNotes(itemsPerPage, page, key, direction)
+        })
     };
 
-    sortByPriority = (key) => {
+    sortByPriority = (itemsPerPage, page, key, direction) => {
+        console.log('sortByPriority',itemsPerPage, page, key, direction);
         this.setState({
-            toDoNotes: this.props.notesToSort.sort((a, b) => {
-                console.log(a[key]);
-                return this.state.direction === 'asc' ? a[key] - b[key] : b[key] - a[key];
-            })
+            sortedNotes: LocalStorageService.sortNotes(itemsPerPage, page, key, direction)
         })
-    }
+    };
 
     handleChange = (e) => {
+        const {itemsPerPage, page} = this.props;
         let index = e.target.selectedIndex;
         this.setState({
             direction: e.target[index].getAttribute('data-way'),
             typeOfSort: e.target[index].getAttribute('data-type')
         }, () => {
-            this.state.typeOfSort === "date" ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId");
-            this.props.stateSetter(this.props.notesToSort);
+            console.log('sortByPriority',itemsPerPage, page, this.state.direction);
+            this.state.typeOfSort === "date" ?
+                this.sortByDeadline(itemsPerPage, page, "deadline", this.state.direction)
+                : this.sortByPriority(itemsPerPage, page, "priorityId", this.state.direction);
+            this.props.stateSetter(this.state.sortedNotes);
         });
-    }
+    };
 
     render() {
-        console.log('sorter', this.props.notesToSort);
+        console.log('sorter', this.state.sortedNotes);
         return (
             <React.Fragment>
                 <select
