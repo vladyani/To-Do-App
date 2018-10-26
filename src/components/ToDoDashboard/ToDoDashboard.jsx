@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
 import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
 import LocalStorageService from "../../common/service/localStorageService";
-import { notification, Icon, Modal } from 'antd';
+import {notification, Icon, Modal} from 'antd';
 
 export default class ToDoDashboard extends Component {
     constructor(props) {
@@ -26,7 +26,7 @@ export default class ToDoDashboard extends Component {
     };
 
     showNextPage = () => {
-        const { itemsPerPage, page } = this.state;
+        const {itemsPerPage, page} = this.state;
         this.setState({
             page: page + 1
         }, () => {
@@ -45,7 +45,7 @@ export default class ToDoDashboard extends Component {
     // };
 
     showPreviousPage = () => {
-        const { itemsPerPage, page } = this.state;
+        const {itemsPerPage, page} = this.state;
         this.setState({
             page: page - 1
         }, () => {
@@ -78,7 +78,7 @@ export default class ToDoDashboard extends Component {
     };
 
     render() {
-        const {toDoNotes,page} = this.state;
+        const {toDoNotes, page} = this.state;
 
         return (
             <React.Fragment>

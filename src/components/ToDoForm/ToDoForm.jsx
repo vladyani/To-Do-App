@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import colors from './toDoForm.service';
-import { Select } from 'antd';
-import { DatePicker } from 'antd';
+import {Select} from 'antd';
+import {DatePicker} from 'antd';
 import LocalStorageService from '../../common/service/localStorageService';
-import { Redirect } from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 
-const { Option } = Select;
+const {Option} = Select;
 
 export default class ToDoForm extends Component {
     constructor(props) {
@@ -20,13 +20,13 @@ export default class ToDoForm extends Component {
     }
 
     handleChange = (event, value) => {
-        value ? this.setState({ priority: value.props.value })
-            : this.setState({ [event.target.name]: event.target.value });
+        value ? this.setState({priority: value.props.value})
+            : this.setState({[event.target.name]: event.target.value});
     };
 
     handleDateChange = date => {
-        date ? this.setState({ deadline: date._d.toISOString().substr(0, 10) })
-            : this.setState({ deadline: '' });
+        date ? this.setState({deadline: date._d.toISOString().substr(0, 10)})
+            : this.setState({deadline: ''});
     };
 
     setPriorityId = priority => {
@@ -47,21 +47,21 @@ export default class ToDoForm extends Component {
             description: this.state.description,
             isActive: true
         });
-        this.setState({ redirect: true });
+        this.setState({redirect: true});
     };
 
     render() {
-        if (this.state.redirect) return <Redirect to='/tododashboard' />;
+        if (this.state.redirect) return <Redirect to='/tododashboard'/>;
 
         return (
             <div className="content-wrapper">
                 <form className="note-form">
                     <div className="form-control-wrapper">
                         <input type="text" className="form-control" onChange={this.handleChange}
-                            name="subject" placeholder="Subject" required />
+                               name="subject" placeholder="Subject" required/>
                     </div>
                     <div className="form-control-wrapper">
-                        <DatePicker onChange={this.handleDateChange} />
+                        <DatePicker onChange={this.handleDateChange}/>
                     </div>
                     <div className="form-control-wrapper">
                         <Select
@@ -70,7 +70,7 @@ export default class ToDoForm extends Component {
                             onChange={this.handleChange}>
                             {colors.map((color, index) =>
                                 <Option
-                                    style={{ backgroundColor: color.bcgColor }}
+                                    style={{backgroundColor: color.bcgColor}}
                                     value={color.bcgColor}
                                     key={index}>{color.label}
                                 </Option>)}
@@ -78,15 +78,15 @@ export default class ToDoForm extends Component {
                     </div>
                     <div className="form-control-wrapper">
                         <textarea name="description"
-                            className="form-control"
-                            onChange={this.handleChange}
-                            placeholder="What do you need to do?"
-                            required>
+                                  className="form-control"
+                                  onChange={this.handleChange}
+                                  placeholder="What do you need to do?"
+                                  required>
                         </textarea>
                     </div>
                     <button type="submit"
-                        className="add-note-btn"
-                        onClick={event => this.addNote(event)}>
+                            className="add-note-btn"
+                            onClick={event => this.addNote(event)}>
                     </button>
                 </form>
             </div>
