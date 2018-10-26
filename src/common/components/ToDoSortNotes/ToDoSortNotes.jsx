@@ -25,7 +25,7 @@ export default class ToDoSort extends Component {
         this.setState({
             toDoNotes: this.props.notesToSort.sort((a, b) => {
                 console.log(a[key]);
-                return this.state.direction === 'asc' ? a[key] - b[key] : a[key] - b[key];
+                return this.state.direction === 'asc' ? a[key] - b[key] : b[key] - a[key];
             })
         })  
     }
