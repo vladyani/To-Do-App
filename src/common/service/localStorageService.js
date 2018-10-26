@@ -32,11 +32,9 @@ export default {
 
         if (key === 'priorityId') {
             toDoNotes = sortByNumbers(notes, key, direction);
-            console.log('serwis by numbers', key, direction, page, toDoNotes);
             return paginateNotes(toDoNotes, itemsPerPage, page);
         } else if (key === 'deadline') {
             toDoNotes = sortByDates(notes, key, direction);
-            console.log('serwis by dates', key, direction, page, toDoNotes);
             return paginateNotes(toDoNotes, itemsPerPage, page)
         }
     }
@@ -63,13 +61,7 @@ const paginateNotes = (notes, itemsPerPage, page) => {
 };
 
 const sortByNumbers = (notes, key, direction) =>
-    notes.sort((a, b) => direction === 'asc' ? a[key] - b[key] : b[key] - a[key]);
+    notes.sort((a, b) => direction !== 'asc' ? a[key] - b[key] : b[key] - a[key]);
 
-const sortByDates = (notes, key, direction) => {
-    const sorter = notes.sort((a, b) =>
-        direction !== 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
-    );
-
-    console.log('jestem sorter by daty', sorter);
-    return sorter;
-};
+const sortByDates = (notes, key, direction) => notes.sort((a, b) =>
+    direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key]));

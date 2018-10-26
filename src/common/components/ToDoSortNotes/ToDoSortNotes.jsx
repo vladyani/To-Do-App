@@ -1,65 +1,48 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 // TODO import {Select} from 'antd';
 import options from './toDoSort.service';
 import LocalStorageService from "../../service/localStorageService";
 // TODO const { Option } = Select;
 
-export default class ToDoSort extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            sortedNotes: [],
-            direction: "",
-            typeOfSort: ""
+const ToDoSort = props => {
+
+    const sortByDeadline = (itemsPerPage, page, key, direction) =>
+        LocalStorageService.sortNotes(itemsPerPage, page, key, direction);
+
+    const sortByNumbers = (itemsPerPage, page, key, direction) =>
+        LocalStorageService.sortNotes(itemsPerPage, page, key, direction);
+
+
+    const handleChange = event => {
+        let typeOfSort, direction, index;
+        const { itemsPerPage, page, stateSetter } = props;
+
+        index = event.target.selectedIndex;
+        direction = event.target[index].getAttribute('data-way');
+        typeOfSort = event.target[index].getAttribute('data-type');
+
+        if (typeOfSort === "date") {
+            stateSetter(sortByDeadline(itemsPerPage, page, "deadline", direction))
+        } else if (typeOfSort === "priority") {
+            stateSetter(sortByNumbers(itemsPerPage, page, "priorityId", direction))
         }
-    }
-
-    sortByDeadline = (itemsPerPage, page, key, direction) => {
-        console.log('sortByDeadline',itemsPerPage, page, key, direction);
-        this.setState({
-            sortedNotes: LocalStorageService.sortNotes(itemsPerPage, page, key, direction)
-        })
     };
 
-    sortByPriority = (itemsPerPage, page, key, direction) => {
-        console.log('sortByPriority',itemsPerPage, page, key, direction);
-        this.setState({
-            sortedNotes: LocalStorageService.sortNotes(itemsPerPage, page, key, direction)
-        })
-    };
-
-    handleChange = (e) => {
-        const {itemsPerPage, page} = this.props;
-        let index = e.target.selectedIndex;
-        this.setState({
-            direction: e.target[index].getAttribute('data-way'),
-            typeOfSort: e.target[index].getAttribute('data-type')
-        }, () => {
-            console.log('sortByPriority',itemsPerPage, page, this.state.direction);
-            this.state.typeOfSort === "date" ?
-                this.sortByDeadline(itemsPerPage, page, "deadline", this.state.direction)
-                : this.sortByPriority(itemsPerPage, page, "priorityId", this.state.direction);
-
-            this.props.stateSetter(this.state.sortedNotes);
-        });
-    };
-
-    render() {
-        console.log('sorter', this.state.sortedNotes);
-        return (
-            <React.Fragment>
-                <select
-                    placeholder="Sort By"
-                    style={{width: "10rem"}}
-                    onChange={e => this.handleChange(e)}>
-                    {options.map((option, index) =>
-                        <option key={index}
-                                value={option.value}
-                                data-type={option.typeOfSort}
-                                data-way={option.wayOfSort}>{option.value}</option>
-                    )}
-                </select>
-            </React.Fragment>
-        )
-    }
+    return (
+        <React.Fragment>
+            <select
+                placeholder="Sort By"
+                style={{ width: "10rem" }}
+                onChange={event => handleChange(event)}>
+                {options.map((option, index) =>
+                    <option key={index}
+                        value={option.value}
+                        data-type={option.typeOfSort}
+                        data-way={option.wayOfSort}>{option.value}</option>
+                )}
+            </select>
+        </React.Fragment>
+    )
 }
+
+export default ToDoSort;
