@@ -46,9 +46,11 @@ export default class ToDoSort extends Component {
         this.setState({
             direction: e.target[index].getAttribute('data-way'),
             typeOfSort: e.target[index].getAttribute('data-type')
-        });
+        }, () => {
         (this.state.typeOfSort === "date") ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId")
-        this.props.updateSortedNotes(this.state.notes);
+        this.props.updateSortedNotes(this.state.notes);  
+        });
+
     }
         
     render() {
