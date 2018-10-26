@@ -1,33 +1,7 @@
 import React, {Component} from 'react';
 import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
-import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
-<<<<<<< HEAD
 import ToDoHeader from './ToDoHeader/ToDoHeader';
-
-export default class ToDoDashboard extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            sortedNotes: [],
-        }
-    }
-
-    onUpdateSortedNotes = sortedNotes => {
-        this.setState({
-            sortedNotes: sortedNotes,
-        })
-    }
-    
-    render() {
-        return(
-            <React.Fragment>
-            <ToDoHeader onUpdateSortedNotes={this.onUpdateSortedNotes}/>
-            <ToDoNotesList sortedNotes={this.state.sortedNotes}/>
-            <div className="btn-wrapper">
-                <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
-            </div>
-        </React.Fragment>
-=======
+import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
 import LocalStorageService from "../../common/service/localStorageService";
 import { notification, Icon, Modal } from 'antd';
 
@@ -52,6 +26,11 @@ export default class ToDoDashboard extends Component {
         })
     };
 
+    onUpdateSortedNotes = (sortedNotes) => {
+        this.setState({
+            toDoNotes: sortedNotes,
+        })
+    }
     showNextPage = () => {
         const { itemsPerPage, page } = this.state;
         this.setState({
@@ -109,6 +88,7 @@ export default class ToDoDashboard extends Component {
 
         return (
             <React.Fragment>
+                <ToDoHeader onUpdateSortedNotes={this.onUpdateSortedNotes}/>
                 <ToDoNotesList toDoNotes={toDoNotes}
                                page={page}
                                showPreviousPage={this.showPreviousPage}
@@ -118,7 +98,6 @@ export default class ToDoDashboard extends Component {
                     <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
                 </div>
             </React.Fragment>
->>>>>>> 6f7f9c1b83c1b89b0a5bde162032c546d3ca250c
         )
     }
 }
