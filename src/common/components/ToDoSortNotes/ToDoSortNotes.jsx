@@ -14,7 +14,6 @@ export default class ToDoSort extends Component {
         }
     }
 
-
     componentDidMount() {
         this.getNotes();
     }
@@ -24,7 +23,6 @@ export default class ToDoSort extends Component {
             notes: LocalStorageService.findNotes()
         })
     };
-
 
     sortByDeadline = (key) => {
         this.setState({
@@ -51,7 +49,6 @@ export default class ToDoSort extends Component {
         });
         (this.state.typeOfSort === "date") ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId")
         this.props.updateSortedNotes(this.state.notes);
-        
     }
         
     render() {

@@ -4,7 +4,7 @@ export default class ToDoMenu extends Component {
     render() {
         return(
             <React.Fragment>
-                <div>ToDoMenu</div>
+                <div className="nav-bar"></div>
             </React.Fragment>
         )
     }

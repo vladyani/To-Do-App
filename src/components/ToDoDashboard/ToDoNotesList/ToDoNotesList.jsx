@@ -15,7 +15,6 @@ export default class ToDoNotesList extends Component {
         }
     }
 
-    
     componentDidMount() {
         this.getNotes(this.state.itemsPerPage, this.state.page);
     }

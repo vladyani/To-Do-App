@@ -11,15 +11,12 @@ export default class ToDoDashboard extends React.Component {
         }
     }
 
-
-
     onUpdateSortedNotes = sortedNotes => {
         this.setState({
             sortedNotes: sortedNotes,
         })
     }
     
-
     render() {
         return(
             <React.Fragment>
