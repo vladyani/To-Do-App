@@ -8,7 +8,7 @@ export default class ToDoSort extends Component {
     constructor(props){
         super(props);
         this.state = {
-            toDoNotes: [],
+            notes: [],
             direction: "",
             typeOfSort: "",
         }
@@ -21,14 +21,14 @@ export default class ToDoSort extends Component {
 
     getNotes = () => {
         this.setState({
-            toDoNotes: LocalStorageService.findNotes()
+            notes: LocalStorageService.findNotes()
         })
     };
 
 
     sortByDeadline = (key) => {
         this.setState({
-            toDoNotes: this.state.toDoNotes.reverse().sort((a, b) => {
+            toDoNotes: this.state.notes.reverse().sort((a, b) => {
                 return this.state.direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
             }), 
         });
@@ -36,7 +36,7 @@ export default class ToDoSort extends Component {
 
     sortByPriority = (key) => {
         this.setState({
-            toDoNotes: this.state.toDoNotes.reverse().sort((a, b) => {
+            toDoNotes: this.state.notes.reverse().sort((a, b) => {
                 console.log(a[key]);
                 return this.state.direction === 'asc' ? a[key] - b[key] : b[key] - a[key];
             })
@@ -48,9 +48,10 @@ export default class ToDoSort extends Component {
         this.setState({
             direction: e.target[index].getAttribute('data-way'),
             typeOfSort: e.target[index].getAttribute('data-type')
-        }, () => {
-            (this.state.typeOfSort === "date") ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId")
         });
+        (this.state.typeOfSort === "date") ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId")
+        this.props.updateSortedNotes(this.state.notes);
+        
     }
         
     render() {
