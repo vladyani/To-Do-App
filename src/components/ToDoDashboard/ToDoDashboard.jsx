@@ -30,14 +30,14 @@ export default class ToDoDashboard extends Component {
         this.setState({
             toDoNotes: sortedNotes,
         })
-    }
+    };
+
     showNextPage = () => {
         const { itemsPerPage, page } = this.state;
         this.setState({
             page: page + 1
         }, () => {
             let pageNumber = page + 1;
-            console.log(pageNumber)
             this.getNotes(itemsPerPage, pageNumber);
         });
     };
@@ -56,7 +56,6 @@ export default class ToDoDashboard extends Component {
             page: page - 1
         }, () => {
             let pageNumber = page - 1;
-            console.log(pageNumber)
             this.getNotes(itemsPerPage, pageNumber);
         });
         // if(this.state.page) this.openNotification();
@@ -83,12 +82,20 @@ export default class ToDoDashboard extends Component {
         this.getNotes(this.state.itemsPerPage, this.state.page);
     };
 
+    stateSetter = currentState => {
+        console.log('stateSetter', currentState);
+        this.setState({
+            toDoNotes: currentState
+        })
+    };
+
     render() {
         const {toDoNotes,page} = this.state;
-
+        console.log('dashboard', toDoNotes);
         return (
             <React.Fragment>
-                <ToDoHeader onUpdateSortedNotes={this.onUpdateSortedNotes}/>
+                <ToDoHeader notesToSort={toDoNotes}
+                            stateSetter={this.stateSetter}/>
                 <ToDoNotesList toDoNotes={toDoNotes}
                                page={page}
                                showPreviousPage={this.showPreviousPage}

@@ -2,20 +2,21 @@ import React, {Component} from 'react';
 import ToDoSortNotes from '../../../common/components/ToDoSortNotes/ToDoSortNotes.jsx';
 import ToDoMenu from './ToDoMenu/ToDoMenu.jsx';
 
-export default class ToDoHeader extends Component {
+const ToDoHeader = (props) => {
 
-   updateSortedNotes = (updatedNotes) => {
-       this.props.onUpdateSortedNotes(updatedNotes);
-   }
+    // const updateSortedNotes = (updatedNotes) => {
+    //     this.props.onUpdateSortedNotes(updatedNotes);
+    // };
 
-    render() {
-        return(
-            <div className="note-header-container">
-                <span className = "header-wrapper">
-                    <ToDoSortNotes updateSortedNotes = {this.updateSortedNotes}/>
-                    <ToDoMenu />
+    return (
+        <div className="note-header-container">
+                <span className="header-wrapper">
+                    <ToDoSortNotes notesToSort={props.notesToSort}
+                                   stateSetter={props.stateSetter}/>
+                    <ToDoMenu/>
                 </span>
-            </div>
-        )
-    }
+        </div>
+    )
 }
+
+export default ToDoHeader;

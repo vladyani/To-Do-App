@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import LocalStorageService from '../../service/localStorageService';
 // TODO import {Select} from 'antd';
 import options from './toDoSort.service';
 // TODO const { Option } = Select;
@@ -14,29 +13,19 @@ export default class ToDoSort extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getNotes();
-    }
-
-    getNotes = () => {
-        this.setState({
-            notes: LocalStorageService.findNotes()
-        })
-    };
-
     sortByDeadline = (key) => {
         this.setState({
-            toDoNotes: this.state.notes.reverse().sort((a, b) => {
-                return this.state.direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
-            }), 
+            toDoNotes: this.props.notesToSort.sort((a, b) =>
+                 this.state.direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key])
+            ),
         });
     };
 
     sortByPriority = (key) => {
         this.setState({
-            toDoNotes: this.state.notes.reverse().sort((a, b) => {
+            toDoNotes: this.props.notesToSort.sort((a, b) => {
                 console.log(a[key]);
-                return this.state.direction === 'asc' ? a[key] - b[key] : b[key] - a[key];
+                return this.state.direction === 'asc' ? a[key] - b[key] : a[key] - b[key];
             })
         })  
     }
@@ -47,15 +36,13 @@ export default class ToDoSort extends Component {
             direction: e.target[index].getAttribute('data-way'),
             typeOfSort: e.target[index].getAttribute('data-type')
         }, () => {
-        (this.state.typeOfSort === "date") ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId")
-        this.props.updateSortedNotes(this.state.notes);  
+        this.state.typeOfSort === "date" ? this.sortByDeadline("deadline") : this.sortByPriority("priorityId");
+        this.props.stateSetter(this.props.notesToSort);
         });
-
     }
         
     render() {
-        console.log(this.state.notes);
-        console.log(this.state.direction);
+        console.log('sorter',this.props.notesToSort);
         return(
             <React.Fragment>
             <select  
