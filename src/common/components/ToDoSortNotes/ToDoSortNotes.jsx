@@ -12,7 +12,6 @@ const ToDoSort = props => {
     const sortByNumbers = (itemsPerPage, page, key, direction) =>
         LocalStorageService.sortNotes(itemsPerPage, page, key, direction);
 
-
     const handleChange = event => {
         let typeOfSort, direction, index;
         const { itemsPerPage, page, stateSetter } = props;
