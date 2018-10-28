@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {HashRouter, Switch, Route} from 'react-router-dom';
 import MainPage from "./components/MainPage/MainPage";
 import ToDoForm from "./components/ToDoForm/ToDoForm";

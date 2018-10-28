@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ToDoSortNotes from '../../../common/components/ToDoSortNotes/ToDoSortNotes.jsx';
 import ToDoMenu from './ToDoMenu/ToDoMenu.jsx';
 
@@ -12,6 +12,6 @@ const ToDoHeader = (props) => (
             <ToDoMenu />
         </span>
     </div>
-)
+);
 
 export default ToDoHeader;
