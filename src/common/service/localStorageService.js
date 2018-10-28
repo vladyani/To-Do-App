@@ -38,7 +38,6 @@ export default {
             return paginateNotes(toDoNotes, itemsPerPage, page)
         }
     }
-
 };
 
 //helpers functions

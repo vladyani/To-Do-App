@@ -1,4 +1,5 @@
 @import '../global/helpers';
+@import '../theme';
 
 @mixin button($diameter) {
   width: $diameter;
@@ -53,4 +54,5 @@
 .todo-paginate-btn {
   font-size: 4rem;
   cursor: pointer;
+  color: $color-accent;
 }

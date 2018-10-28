@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 // TODO import {Select} from 'antd';
 import options from './toDoSort.service';
 import LocalStorageService from "../../service/localStorageService";
@@ -14,7 +14,7 @@ const ToDoSort = props => {
 
     const handleChange = event => {
         let typeOfSort, direction, index;
-        const { itemsPerPage, page, stateSetter } = props;
+        const {itemsPerPage, page, stateSetter} = props;
 
         index = event.target.selectedIndex;
         direction = event.target[index].getAttribute('data-way');
@@ -30,18 +30,17 @@ const ToDoSort = props => {
     return (
         <React.Fragment>
             <select
-                placeholder="Sort By"
-                style={{ width: "10rem" }}
                 onChange={event => handleChange(event)}>
+                <option hidden>Sort By</option>
                 {options.map((option, index) =>
                     <option key={index}
-                        value={option.value}
-                        data-type={option.typeOfSort}
-                        data-way={option.wayOfSort}>{option.value}</option>
+                            value={option.value}
+                            data-type={option.typeOfSort}
+                            data-way={option.wayOfSort}>{option.value}</option>
                 )}
             </select>
         </React.Fragment>
     )
-}
+};
 
 export default ToDoSort;
