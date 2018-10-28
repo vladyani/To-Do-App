@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ToDoNotes from './ToDoNotes/ToDoNotes';
 
 export default class ToDoNotesList extends Component {
@@ -11,7 +11,7 @@ export default class ToDoNotesList extends Component {
     }
 
     toggleModal = (currToDoNote) => {
-        const { visible } = this.state;
+        const {visible} = this.state;
 
         !visible ? this.setState({
             visible: !visible,
@@ -36,23 +36,23 @@ export default class ToDoNotesList extends Component {
                 <div className="note-list-container">
                     <span>
                         <button className={"btn-transparent"}
-                            onClick={showPreviousPage} disabled={!page}>
+                                onClick={showPreviousPage} disabled={!page}>
                             <span className="icon-left-arrow todo-paginate-btn"></span>
                         </button>
                     </span>
                     <div className="note-list-wrapper">
                         {toDoNotes ? toDoNotes.map((toDoNote, index) =>
                             <ToDoNotes toDoNote={toDoNote}
-                                visible={this.state.visible}
-                                handleOk={this.handleOk}
-                                toggleModal={() => this.toggleModal(toDoNote)}
-                                currToDoNote={this.state.currToDoNote}
-                                confirmDeleteNote={confirmDeleteNote}
-                                key={index} />) : null}
+                                       visible={this.state.visible}
+                                       handleOk={this.handleOk}
+                                       toggleModal={() => this.toggleModal(toDoNote)}
+                                       currToDoNote={this.state.currToDoNote}
+                                       confirmDeleteNote={confirmDeleteNote}
+                                       key={index}/>) : null}
                     </div>
                     <span>
                         <button className={"btn-transparent"}
-                            onClick={showNextPage}>
+                                onClick={showNextPage}>
                             <span className="icon-right-arrow todo-paginate-btn"></span>
                         </button>
                     </span>

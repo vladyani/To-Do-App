@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
 import ToDoHeader from './ToDoHeader/ToDoHeader';
 import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
 import LocalStorageService from "../../common/service/localStorageService";
-import { notification, Icon, Modal } from 'antd';
+import {notification, Icon, Modal} from 'antd';
 
 export default class ToDoDashboard extends Component {
     constructor(props) {
@@ -26,17 +26,11 @@ export default class ToDoDashboard extends Component {
         })
     };
 
-    onUpdateSortedNotes = (sortedNotes) => {
-        this.setState({
-            toDoNotes: sortedNotes,
-        })
-    };
-
     showNextPage = () => {
-        const { itemsPerPage, page } = this.state;
+        const {itemsPerPage, page} = this.state;
         this.setState({
             page: page + 1,
-            toDoNotes: this.state.currentState
+            // toDoNotes: this.state.currentState
         }, () => {
             let pageNumber = page + 1;
             this.getNotes(itemsPerPage, pageNumber);
@@ -52,10 +46,10 @@ export default class ToDoDashboard extends Component {
     // };
 
     showPreviousPage = () => {
-        const { itemsPerPage, page } = this.state;
+        const {itemsPerPage, page} = this.state;
         this.setState({
             page: page - 1,
-            toDoNotes: this.state.currentState
+            // toDoNotes: this.state.currentState
         }, () => {
             let pageNumber = page - 1;
             this.getNotes(itemsPerPage, pageNumber);
@@ -85,11 +79,11 @@ export default class ToDoDashboard extends Component {
     };
 
     stateSetter = currentState => {
-        this.setState({ toDoNotes: currentState })
+        this.setState({toDoNotes: currentState})
     };
 
     render() {
-        const { toDoNotes, itemsPerPage, page } = this.state;
+        const {toDoNotes, itemsPerPage, page} = this.state;
 
         return (
             <React.Fragment>
@@ -99,12 +93,12 @@ export default class ToDoDashboard extends Component {
                     stateSetter={this.stateSetter}
                 />
                 <ToDoNotesList toDoNotes={toDoNotes}
-                    page={page}
-                    showPreviousPage={this.showPreviousPage}
-                    showNextPage={this.showNextPage}
-                    confirmDeleteNote={this.confirmDeleteNote} />
+                               page={page}
+                               showPreviousPage={this.showPreviousPage}
+                               showNextPage={this.showNextPage}
+                               confirmDeleteNote={this.confirmDeleteNote}/>
                 <div className="btn-wrapper">
-                    <ToDoButton btnClass="add-note-btn" routeTo="/todoform" />
+                    <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
                 </div>
             </React.Fragment>
         )
