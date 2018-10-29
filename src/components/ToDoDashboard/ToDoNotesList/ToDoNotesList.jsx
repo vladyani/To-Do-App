@@ -1,55 +1,61 @@
 import React, {Component} from 'react';
 import ToDoNotes from './ToDoNotes/ToDoNotes';
-import LocalStorageService from '../../../common/service/localStorageService';
 
 export default class ToDoNotesList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            toDoNotes: [],
-            page: 0
+            visible: false,
+            currToDoNote: {}
         }
     }
 
-    componentDidMount() {
-        this.getNotes();
-    }
+    toggleModal = (currToDoNote) => {
+        const {visible} = this.state;
 
-    getNotes = () => {
-        this.setState({
-            toDoNotes: LocalStorageService.findNotes()
+        !visible ? this.setState({
+            visible: !visible,
+            currToDoNote: currToDoNote,
+        }) : this.setState({
+            visible: !visible,
         })
     };
 
-    showNextPage = () => {
+    handleOk = () => {
         this.setState({
-            page: this.state.page + 1
-        })
-    };
-
-    showPreviousPage = () => {
-        this.setState({
-            page: this.state.page - 1
-        })
+            visible: false,
+        });
     };
 
     render() {
-        const {toDoNotes, page} = this.state;
+        const {toDoNotes, page, showNextPage, showPreviousPage, confirmDeleteNote} = this.props;
 
-        const itemsToDisplay = 6;
-        const startIndex = page * itemsToDisplay;
-        const visibleToDoNotes = toDoNotes ? toDoNotes.slice(startIndex, startIndex + itemsToDisplay) : null;
-        console.log(visibleToDoNotes);
         return (
             <React.Fragment>
                 <h1>{page}</h1>
                 <div className="note-list-container">
-                    <span><button onClick={this.showPreviousPage} disabled={!page}>previous</button></span>
+                    <span>
+                        <button className={"btn-transparent"}
+                                onClick={showPreviousPage} disabled={!page}>
+                            <span className="icon-left-arrow todo-paginate-btn"></span>
+                        </button>
+                    </span>
                     <div className="note-list-wrapper">
-                        {visibleToDoNotes ? visibleToDoNotes.map((toDoNote, index) =>
-                            <ToDoNotes toDoNote={toDoNote} key={index}/>) : null}
+                        {toDoNotes ? toDoNotes.map((toDoNote, index) =>
+                            <ToDoNotes toDoNote={toDoNote}
+                                       visible={this.state.visible}
+                                       handleOk={this.handleOk}
+                                       toggleModal={() => this.toggleModal(toDoNote)}
+                                       currToDoNote={this.state.currToDoNote}
+                                       confirmDeleteNote={confirmDeleteNote}
+                                       key={index}/>) : null}
                     </div>
-                    <span><button onClick={this.showNextPage}>next</button></span>
+                    <span>
+                        <button className={"btn-transparent"}
+                                onClick={showNextPage}>
+                            <span className="icon-right-arrow todo-paginate-btn"></span>
+                        </button>
+                    </span>
                 </div>
             </React.Fragment>
         )

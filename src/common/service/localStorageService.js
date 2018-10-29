@@ -1,21 +1,66 @@
+const objectName = 'ToDoNotes';
+
 export default {
     findNotes() {
-        const toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
-        return toDoNotes;
+        const toDoNotes = getNotesFromLocalStorage(objectName);
+        if (toDoNotes) return toDoNotes;
     },
     createNote(note) {
-        let toDoNotes;
-        const isNotesExist = JSON.parse(localStorage.getItem('ToDoNotes'));
+        const isNotesExist = getNotesFromLocalStorage(objectName);
         if (isNotesExist) {
-            toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
-            toDoNotes.push(note);
-            localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
+            pushNoteToLocalStorage(objectName, note);
         } else {
-            localStorage.setItem('ToDoNotes', JSON.stringify([]));
-            toDoNotes = JSON.parse(localStorage.getItem('ToDoNotes'));
-            toDoNotes.push(note);
-            localStorage.setItem('ToDoNotes', JSON.stringify(toDoNotes));
+            setOrUpdateLocalStorage(objectName, []);
+            pushNoteToLocalStorage(objectName, note);
+        }
+    },
+    deleteNote(noteId) {
+        const toDoNotes = getNotesFromLocalStorage(objectName);
+        let indexOfNote = toDoNotes.findIndex(note => note.noteId === noteId);
+        toDoNotes.splice(indexOfNote, 1);
+        setOrUpdateLocalStorage(objectName, toDoNotes);
+    },
+    //force is optional argument, if you pass it then it will load all results from local storage object
+    findAndPaginateNotes(itemsPerPage, page, force) {
+        const toDoNotes = getNotesFromLocalStorage(objectName);
+        if (force) return toDoNotes;
+        if (toDoNotes) return paginateNotes(toDoNotes, itemsPerPage, page);
+    },
+    sortNotes(itemsPerPage, page, key, direction) {
+        let toDoNotes;
+        const notes = getNotesFromLocalStorage(objectName);
+
+        if (key === 'priorityId') {
+            toDoNotes = sortByNumbers(notes, key, direction);
+            return paginateNotes(toDoNotes, itemsPerPage, page);
+        } else if (key === 'deadline') {
+            toDoNotes = sortByDates(notes, key, direction);
+            return paginateNotes(toDoNotes, itemsPerPage, page)
         }
     }
-}
+};
 
+//helpers functions
+const getNotesFromLocalStorage = name =>
+    JSON.parse(localStorage.getItem(name));
+
+const setOrUpdateLocalStorage = (name, object) =>
+    localStorage.setItem(name, JSON.stringify(object));
+
+const pushNoteToLocalStorage = (name, note) => {
+    let toDoNotes;
+    toDoNotes = JSON.parse(localStorage.getItem(name));
+    toDoNotes.push(note);
+    localStorage.setItem(name, JSON.stringify(toDoNotes));
+};
+
+const paginateNotes = (notes, itemsPerPage, page) => {
+    const startIndex = page * itemsPerPage;
+    return notes.slice(startIndex, startIndex + itemsPerPage);
+};
+
+const sortByNumbers = (notes, key, direction) =>
+    notes.sort((a, b) => direction !== 'asc' ? a[key] - b[key] : b[key] - a[key]);
+
+const sortByDates = (notes, key, direction) => notes.sort((a, b) =>
+    direction === 'asc' ? new Date(a[key]) - new Date(b[key]) : new Date(b[key]) - new Date(a[key]));
