@@ -1,5 +1,5 @@
 import React from 'react';
-import {notification, Icon} from 'antd';
+import {notification, Icon, Modal} from 'antd';
 
 export const notificationOptions = [
     {
@@ -22,6 +22,13 @@ export const tooltipOptions = {
     deleteNote: 'Delete note'
 };
 
+export const confirmationModalOptions = [
+    {
+        title: 'Do you want to delete these To Do\'s?',
+        content: 'This note will not come back, make sure you do the right thing :)'
+    }
+];
+
 export default {
     openNotification(message, description, iconType, color) {
         notification.open({
@@ -29,5 +36,17 @@ export default {
             description: description,
             icon: <Icon type={iconType} style={{color: color}}/>
         });
+    },
+    openConfirmationModal(noteId, deleteNote, title, content) {
+        Modal.confirm({
+            title: title,
+            content: content,
+            onOk: () => {
+                deleteNote(noteId);
+            },
+            onCancel: () => {
+            },
+        });
     }
+
 }

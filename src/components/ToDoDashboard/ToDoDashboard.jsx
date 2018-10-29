@@ -3,8 +3,10 @@ import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
 import ToDoHeader from './ToDoHeader/ToDoHeader';
 import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
 import LocalStorageService from '../../common/service/localStorageService';
-import NotificationService, {notificationOptions} from '../../common/service/notificationService';
-import {Modal} from 'antd';
+import NotificationService, {
+    notificationOptions,
+    confirmationModalOptions
+} from '../../common/service/notificationService';
 
 export default class ToDoDashboard extends Component {
     constructor(props) {
@@ -57,12 +59,16 @@ export default class ToDoDashboard extends Component {
         if (isActive) {
             LocalStorageService.updateNote(noteId, 'isActive', false);
             NotificationService.openNotification(
-                completed.message, completed.description, completed.iconType
+                completed.message,
+                completed.description,
+                completed.iconType
             );
         } else {
             LocalStorageService.updateNote(noteId, 'isActive', true);
             NotificationService.openNotification(
-                inProgress.message, inProgress.description, inProgress.iconType
+                inProgress.message,
+                inProgress.description,
+                inProgress.iconType
             );
         }
         this.getNotes(this.state.itemsPerPage, this.state.page);
@@ -70,15 +76,12 @@ export default class ToDoDashboard extends Component {
 
     confirmDeleteNote = (noteId, isActive) => {
         if (isActive) {
-            Modal.confirm({
-                title: 'Do you want to delete these To Do\'s?',
-                content: 'This note will not come back, make sure you do the right thing :)',
-                onOk: () => {
-                    this.deleteNote(noteId);
-                },
-                onCancel: () => {
-                },
-            });
+            NotificationService.openConfirmationModal(
+                noteId,
+                this.deleteNote,
+                confirmationModalOptions[0].title,
+                confirmationModalOptions[0].content
+            );
         } else {
             this.deleteNote(noteId);
         }
