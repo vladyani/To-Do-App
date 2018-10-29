@@ -1,5 +1,5 @@
 import React from 'react';
-import {Modal, Input} from 'antd';
+import {Modal, Input, Select} from 'antd';
 
 const ToDoEditModal = props => {
     const {deadline, description, isActive, noteId, priority, subject} = props.currToDoNote;

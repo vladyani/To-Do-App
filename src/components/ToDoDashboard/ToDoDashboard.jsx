@@ -57,14 +57,14 @@ export default class ToDoDashboard extends Component {
         const inProgress = notificationOptions[1];
 
         if (isActive) {
-            LocalStorageService.updateNote(noteId, 'isActive', false);
+            LocalStorageService.updateNoteStatus(noteId, 'isActive', false);
             NotificationService.openNotification(
                 completed.message,
                 completed.description,
                 completed.iconType
             );
         } else {
-            LocalStorageService.updateNote(noteId, 'isActive', true);
+            LocalStorageService.updateNoteStatus(noteId, 'isActive', true);
             NotificationService.openNotification(
                 inProgress.message,
                 inProgress.description,
@@ -75,16 +75,13 @@ export default class ToDoDashboard extends Component {
     };
 
     confirmDeleteNote = (noteId, isActive) => {
-        if (isActive) {
-            NotificationService.openConfirmationModal(
-                noteId,
-                this.deleteNote,
-                confirmationModalOptions[0].title,
-                confirmationModalOptions[0].content
-            );
-        } else {
-            this.deleteNote(noteId);
-        }
+        isActive ? NotificationService.openConfirmationModal(
+            noteId,
+            this.deleteNote,
+            confirmationModalOptions[0].title,
+            confirmationModalOptions[0].content
+        )
+            : this.deleteNote(noteId);
     };
 
     deleteNote = (noteId) => {
