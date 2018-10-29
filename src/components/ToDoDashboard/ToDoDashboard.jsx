@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
 import ToDoHeader from './ToDoHeader/ToDoHeader';
 import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
-import LocalStorageService from "../../common/service/localStorageService";
-import {notification, Icon, Modal} from 'antd';
+import LocalStorageService from '../../common/service/localStorageService';
+import NotificationService, {notificationOptions} from '../../common/service/notificationService';
+import {Modal} from 'antd';
 
 export default class ToDoDashboard extends Component {
     constructor(props) {
@@ -37,14 +38,6 @@ export default class ToDoDashboard extends Component {
         });
     };
 
-    // openNotification = () => {
-    //     notification.open({
-    //         message: 'Notification Title',
-    //         description: 'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-    //         icon: <Icon type="smile" style={{color: '#108ee9'}}/>
-    //     });
-    // };
-
     showPreviousPage = () => {
         const {itemsPerPage, page} = this.state;
         this.setState({
@@ -54,7 +47,25 @@ export default class ToDoDashboard extends Component {
             let pageNumber = page - 1;
             this.getNotes(itemsPerPage, pageNumber);
         });
-        // if(this.state.page) this.openNotification();
+        // if(this.state.page) NotificationService.openNotification();
+    };
+
+    completedOrInProgressNote = (noteId, isActive) => {
+        const completed = notificationOptions[0];
+        const inProgress = notificationOptions[1];
+
+        if (isActive) {
+            LocalStorageService.updateNote(noteId, 'isActive', false);
+            NotificationService.openNotification(
+                completed.message, completed.description, completed.iconType
+            );
+        } else {
+            LocalStorageService.updateNote(noteId, 'isActive', true);
+            NotificationService.openNotification(
+                inProgress.message, inProgress.description, inProgress.iconType
+            );
+        }
+        this.getNotes(this.state.itemsPerPage, this.state.page);
     };
 
     confirmDeleteNote = (noteId, isActive) => {
@@ -96,7 +107,8 @@ export default class ToDoDashboard extends Component {
                                page={page}
                                showPreviousPage={this.showPreviousPage}
                                showNextPage={this.showNextPage}
-                               confirmDeleteNote={this.confirmDeleteNote}/>
+                               confirmDeleteNote={this.confirmDeleteNote}
+                               completedOrInProgressNote={this.completedOrInProgressNote}/>
                 <div className="btn-wrapper">
                     <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
                 </div>

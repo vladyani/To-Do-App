@@ -23,6 +23,7 @@
   border-radius: 8px;
   background: $color-box;
   padding: 0.3rem;
+  transition: 0.4s ease-in-out;
 
   .note-body {
     position: relative;
@@ -52,24 +53,24 @@
 }
 
 .note-header-container {
-    display:flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .header-wrapper {
+    display: flex;
+    width: 60vw;
+    height: 5vh;
+    justify-content: space-between;
     align-items: center;
+    border-radius: 6px;
 
-    .header-wrapper {
-        display:flex;
-        width: 60vw;
-        height: 5vh;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 6px;
-
-        select {
-            background-color: $color-box;
-            outline: none;
-            border: none;    
-        }
+    select {
+      background-color: $color-box;
+      outline: none;
+      border: none;
     }
+  }
 }
 
 .nav-bar {

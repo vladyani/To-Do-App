@@ -1,9 +1,10 @@
 const objectName = 'ToDoNotes';
 
 export default {
-    findNotes() {
+    findNote(noteId) {
         const toDoNotes = getNotesFromLocalStorage(objectName);
-        if (toDoNotes) return toDoNotes;
+        const indexOfNote = toDoNotes.findIndex((note) => note.noteId === noteId);
+        return toDoNotes[indexOfNote];
     },
     createNote(note) {
         const isNotesExist = getNotesFromLocalStorage(objectName);
@@ -13,6 +14,13 @@ export default {
             setOrUpdateLocalStorage(objectName, []);
             pushNoteToLocalStorage(objectName, note);
         }
+    },
+    updateNote(noteId, key, value) {
+        const toDoNotes = getNotesFromLocalStorage(objectName);
+        const indexOfNote = toDoNotes.findIndex((note) => note.noteId === noteId);
+        toDoNotes[indexOfNote][key] = value;
+        setOrUpdateLocalStorage(objectName, toDoNotes);
+
     },
     deleteNote(noteId) {
         const toDoNotes = getNotesFromLocalStorage(objectName);

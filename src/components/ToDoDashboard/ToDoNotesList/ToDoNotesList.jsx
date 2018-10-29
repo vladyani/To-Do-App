@@ -28,7 +28,7 @@ export default class ToDoNotesList extends Component {
     };
 
     render() {
-        const {toDoNotes, page, showNextPage, showPreviousPage, confirmDeleteNote} = this.props;
+        const {toDoNotes, page, showNextPage, showPreviousPage, confirmDeleteNote, completedOrInProgressNote} = this.props;
 
         return (
             <React.Fragment>
@@ -48,6 +48,7 @@ export default class ToDoNotesList extends Component {
                                        toggleModal={() => this.toggleModal(toDoNote)}
                                        currToDoNote={this.state.currToDoNote}
                                        confirmDeleteNote={confirmDeleteNote}
+                                       completedOrInProgressNote={completedOrInProgressNote}
                                        key={index}/>) : null}
                     </div>
                     <span>
