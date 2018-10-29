@@ -17,8 +17,9 @@ export const notificationOptions = [
 ];
 
 export const tooltipOptions = {
-  editNote: 'Edit note',
-  updateNoteStatus: 'Update status to '
+    editNote: 'Edit note',
+    updateNoteStatus: 'Update note status to ',
+    deleteNote: 'Delete note'
 };
 
 export default {

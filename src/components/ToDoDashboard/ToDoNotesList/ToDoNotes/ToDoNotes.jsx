@@ -17,10 +17,13 @@ const ToDoNotes = props => {
                  style={{boxShadow: !isActive ? `0 0 0 1px ${priority}` : null}}>
                 <div className="note-body">
                     <span className="note-btn-wrapper">
-                        <button className="btn-transparent"
-                                onClick={() => props.confirmDeleteNote(noteId, isActive)}>
-                            <span className="icon-trash"></span>
-                        </button>
+                        <Tooltip placement={'top'}
+                                 title={tooltipOptions.deleteNote}>
+                            <button className="btn-transparent"
+                                    onClick={() => props.confirmDeleteNote(noteId, isActive)}>
+                                <span className="icon-trash"></span>
+                            </button>
+                        </Tooltip>
                     </span>
                     <h3>{deadline}</h3>
                     <h3>{subject}</h3>
