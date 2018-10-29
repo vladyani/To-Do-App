@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import {HashRouter, Switch, Route} from 'react-router-dom';
+import MainPage from "./components/MainPage/MainPage";
+import ToDoForm from "./components/ToDoForm/ToDoForm";
+import ToDoDashboard from "./components/ToDoDashboard/ToDoDashboard";
 import './App.scss';
 
-class App extends Component {
-  render() {
-    return (
-     <React.Fragment>
-        <div className="bodyOf"></div>
-     </React.Fragment>
-    );
-  }
-}
+const App = () => (
+    <HashRouter>
+        <Switch>
+            <Route exact path='/' component={MainPage}/>
+            <Route path='/todoform' component={ToDoForm}/>
+            <Route path='/tododashboard' component={ToDoDashboard}/>
+        </Switch>
+    </HashRouter>
+);
 
 export default App;
