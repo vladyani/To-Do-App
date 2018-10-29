@@ -4,6 +4,7 @@
 ## Technologies
 * REACT
 * Ant Design
+* Node
 ### Demo
 
 You can check the website preview with [this link]()
