@@ -10,12 +10,14 @@
     font-size: $f-size-base;
     margin-bottom: 25px;
   }
+
   h1 {
     font-weight: 300;
     margin-top: 25px;
     font-size: $f-size-header;
     color: $color-white;
   }
+
   .start-btn {
     @include button (70px);
     margin-top: 40px;

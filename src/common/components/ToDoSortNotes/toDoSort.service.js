@@ -10,12 +10,12 @@ const options = [
         wayOfSort: "asc",
     },
     {
-        value: 'The most important',
+        value: 'Most important',
         typeOfSort: 'priority',
         wayOfSort: "desc",
     },
     {
-        value: 'The least important',
+        value: 'Least important',
         typeOfSort: 'priority',
         wayOfSort: "asc",
     }
