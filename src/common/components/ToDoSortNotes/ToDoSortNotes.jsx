@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 // TODO import {Select} from 'antd';
 import options from './toDoSort.service';
-import LocalStorageService from "../../service/localStorageService";
+import LocalStorageService from "../../service/localStorage.service";
 // TODO const { Option } = Select;
 
 const ToDoSort = props => {

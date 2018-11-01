@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import colors from './toDoForm.service';
+import colors from '../../common/service/colors.service';
 import {Select} from 'antd';
 import {DatePicker} from 'antd';
-import LocalStorageService from '../../common/service/localStorageService';
+import LocalStorageService from '../../common/service/localStorage.service';
 import {Redirect} from 'react-router-dom';
 
 const {Option} = Select;
@@ -25,7 +25,7 @@ export default class ToDoForm extends Component {
     };
 
     handleDateChange = date => {
-        date ? this.setState({deadline: date._d.toISOString().substr(0, 10)})
+        date ? this.setState({deadline: date._d})
             : this.setState({deadline: ''});
     };
 
