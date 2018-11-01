@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import ToDoNotesList from './ToDoNotesList/ToDoNotesList';
 import ToDoHeader from './ToDoHeader/ToDoHeader';
 import ToDoButton from '../../common/components/ToDoButton/ToDoButton';
-import LocalStorageService from '../../common/service/localStorageService';
+import LocalStorageService from '../../common/service/localStorage.service';
 import NotificationService, {
     notificationOptions,
     confirmationModalOptions
-} from '../../common/service/notificationService';
+} from '../../common/service/notification.service';
 
 export default class ToDoDashboard extends Component {
     constructor(props) {
@@ -24,6 +24,7 @@ export default class ToDoDashboard extends Component {
 
     //force is optional argument, if you pass it then it will load all results from local storage object
     getNotes = (itemsPerPage, page) => {
+        console.log('get notes mordy ahha z dashboard!');
         this.setState({
             toDoNotes: LocalStorageService.findAndPaginateNotes(itemsPerPage, page)
         })
@@ -80,7 +81,7 @@ export default class ToDoDashboard extends Component {
             this.deleteNote,
             confirmationModalOptions[0].title,
             confirmationModalOptions[0].content
-        )
+            )
             : this.deleteNote(noteId);
     };
 
@@ -103,12 +104,15 @@ export default class ToDoDashboard extends Component {
                     page={page}
                     stateSetter={this.stateSetter}
                 />
-                <ToDoNotesList toDoNotes={toDoNotes}
-                               page={page}
-                               showPreviousPage={this.showPreviousPage}
-                               showNextPage={this.showNextPage}
-                               confirmDeleteNote={this.confirmDeleteNote}
-                               completedOrInProgressNote={this.completedOrInProgressNote}/>
+                <ToDoNotesList
+                    toDoNotes={toDoNotes}
+                    page={page}
+                    itemsPerPage={itemsPerPage}
+                    getNotes={this.getNotes}
+                    showPreviousPage={this.showPreviousPage}
+                    showNextPage={this.showNextPage}
+                    confirmDeleteNote={this.confirmDeleteNote}
+                    completedOrInProgressNote={this.completedOrInProgressNote}/>
                 <div className="btn-wrapper">
                     <ToDoButton btnClass="add-note-btn" routeTo="/todoform"/>
                 </div>

@@ -1,17 +1,18 @@
 import React from 'react';
 import ToDoEditModal from '../../../../common/components/ToDoEditModal/ToDoEditModal';
 import {Tooltip} from 'antd';
-import {tooltipOptions} from '../../../../common/service/notificationService';
+import {tooltipOptions} from '../../../../common/service/notification.service';
 
 const ToDoNotes = props => {
     const {deadline, subject, priority, noteId, isActive} = props.toDoNote;
+
     return (
         <React.Fragment>
             <ToDoEditModal
                 visible={props.visible}
-                handleOk={props.handleOk}
+                handleOkModal={props.handleOkModal}
                 toggleModal={props.toggleModal}
-                currToDoNote={props.currToDoNote}>
+                currNoteId={props.currNoteId}>
             </ToDoEditModal>
             <div className="note-container"
                  style={{boxShadow: !isActive ? `0 0 0 1px ${priority}` : null}}>

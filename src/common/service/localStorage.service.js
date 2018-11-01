@@ -1,7 +1,7 @@
 const objectName = 'ToDoNotes';
 
 export default {
-    findNote(noteId) {
+    findNoteById(noteId) {
         const toDoNotes = getNotesFromLocalStorage(objectName);
         const indexOfNote = findNoteById(toDoNotes, noteId);
         return toDoNotes[indexOfNote];
