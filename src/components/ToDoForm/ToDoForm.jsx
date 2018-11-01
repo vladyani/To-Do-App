@@ -54,7 +54,7 @@ export default class ToDoForm extends Component {
         if (this.state.redirect) return <Redirect to='/tododashboard'/>;
 
         return (
-            <div className="content-wrapper">
+            <div className="content-wrapper bounceInLeft">
                 <form className="note-form">
                     <div className="form-control-wrapper">
                         <input type="text" className="form-control" onChange={this.handleChange}

@@ -1,0 +1,47 @@
+@import '../theme';
+
+.ant-layout-sider {
+  position: fixed;
+  height: 100vh;
+
+  .logo {
+    text-align: center;
+    margin: 1rem 0;
+    border-bottom: 1px solid #efefef;
+    width: 90%;
+    margin-left: 0.7rem;
+    padding: 1rem 0;
+    font-weight: 600;
+  }
+}
+
+.anticon-align-center, .anticon-align-right, .trigger {
+  position: absolute;
+  top: 4rem;
+  left: 15rem;
+  font-size: 2.4rem;
+  cursor: pointer;
+}
+
+.ant-layout-sider-children {
+  background: #2b2a2a;
+}
+
+.ant-menu-item {
+  background: #2b2a2a;
+  margin: 1rem 0;
+}
+
+.ant-menu-dark .ant-menu-item:hover,
+.ant-menu-dark .ant-menu-submenu-title:hover {
+  background: $color-bcg;
+}
+
+.ant-menu, .ant-menu-dark,
+.ant-menu-root, .ant-menu-inline {
+  background: #2b2a2a;
+}
+
+.ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected {
+  background-color: $color-bcg;
+}

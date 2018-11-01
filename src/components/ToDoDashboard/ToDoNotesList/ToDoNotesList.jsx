@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ToDoNotes from './ToDoNotes/ToDoNotes';
 import LocalStorageService from '../../../common/service/localStorage.service';
+import {Alert} from 'antd';
 
 export default class ToDoNotesList extends Component {
     constructor(props) {
@@ -57,7 +58,6 @@ export default class ToDoNotesList extends Component {
 
         return (
             <React.Fragment>
-                <h1>{page}</h1>
                 <div className="note-list-container">
                     <span>
                         <button className={"btn-transparent"}
@@ -76,7 +76,8 @@ export default class ToDoNotesList extends Component {
                                        completedOrInProgressNote={completedOrInProgressNote}
                                        key={index}/>) : null}
                         {page === 0 ?
-                            !toDoNotes.length ? <span>Seems that you have no to-doo things!</span> : null
+                            !toDoNotes.length ?
+                                <span>Seems that you have no to-doo things!</span> : null
                             : null}
                     </div>
                     <span>
@@ -86,6 +87,7 @@ export default class ToDoNotesList extends Component {
                         </button>
                     </span>
                 </div>
+                <div className="page-number"><small>Page number: </small><em>{page+1}</em></div>
             </React.Fragment>
         )
     }
