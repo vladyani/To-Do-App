@@ -25,7 +25,7 @@ export default class ToDoForm extends Component {
     };
 
     handleDateChange = date => {
-        date ? this.setState({deadline: date._d.toISOString().substr(0, 10)})
+        date ? this.setState({deadline: date._d})
             : this.setState({deadline: ''});
     };
 

@@ -32,7 +32,7 @@ export default class ToDoNotesList extends Component {
         const noteToEdit = {
             noteId: noteId,
             subject: subjectToEdit,
-            deadline: currNote.deadline,
+            deadline: deadlineToEdit,
             priority: currNote.priority,
             priorityId: currNote.priorityId,
             description: descriptionToEdit,
@@ -75,6 +75,9 @@ export default class ToDoNotesList extends Component {
                                        confirmDeleteNote={confirmDeleteNote}
                                        completedOrInProgressNote={completedOrInProgressNote}
                                        key={index}/>) : null}
+                        {page === 0 ?
+                            !toDoNotes.length ? <span>Seems that you have no to-doo things!</span> : null
+                            : null}
                     </div>
                     <span>
                         <button className={"btn-transparent"}

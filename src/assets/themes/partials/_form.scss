@@ -1,6 +1,10 @@
 @import '../theme';
 @import './button';
 
+.ant-calendar-picker-clear {
+  background: #2c2a2a;
+}
+
 .note-form {
   width: 40vw;
   height: 75vh;
@@ -27,7 +31,7 @@
     outline: none;
     padding: 0.7rem;
     margin: 0.93rem 0 0.6rem 0;
-    transition: 0.5s ease-in-out;
+    transition: 0.2s ease-in-out;
 
     &:focus, &:hover {
       box-shadow: 0 0 0 1px $color-accent;
@@ -46,7 +50,7 @@
       outline: none;
       padding: 0.7rem;
       margin: 0.93rem 0 0.6rem 0;
-      transition: 0.5s ease-in-out;
+      transition: 0.2s ease-in-out;
 
       &:focus, &:hover {
         box-shadow: 0 0 0 1px $color-accent;
@@ -65,7 +69,7 @@
       color: $color-white;
       outline: none;
       margin: 0.93rem 0 0.6rem 0;
-      transition: 0.5s ease-in-out;
+      transition: 0.2s ease-in-out;
 
       &:focus, &:hover {
         box-shadow: 0 0 0 1px $color-accent;
@@ -91,4 +95,42 @@
 
 .ant-calendar {
   margin-top: 1.1rem;
+}
+
+.edit-form {
+
+  .edit-form-group {
+    text-align: center;
+    margin: 1rem 0;
+
+    textarea, input {
+      width: 80%;
+      resize: none;
+    }
+
+    .ant-calendar-picker {
+      width: 100%;
+
+      .ant-calendar-picker-icon, .anticon, .anticon-close-circle, .ant-calendar-picker-clear {
+        right: 13%;
+        color: #efefef !important;
+      }
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin-left: 3rem;
+    }
+
+    textarea, input {
+      border-radius: 5px;
+      border: none;
+      background-color: $color-box;
+      color: $color-white;
+      outline: none;
+      padding: 0.7rem;
+      transition: 0.2s ease-in-out;
+    }
+  }
 }

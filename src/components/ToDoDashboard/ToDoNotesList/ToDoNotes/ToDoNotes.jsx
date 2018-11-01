@@ -26,10 +26,10 @@ const ToDoNotes = props => {
                             </button>
                         </Tooltip>
                     </span>
-                    <h3>{deadline}</h3>
+                    <h3>{deadline.substr(0, 10)}</h3>
                     <h3>{subject}</h3>
                     <span className="note-btn-details-wrapper">
-                        <Tooltip placement="leftTop"
+                        <Tooltip placement="top"
                                  title={tooltipOptions.editNote}>
                             <button className="btn-transparent note-btn-icon"
                                     onClick={props.toggleModal}
@@ -37,8 +37,8 @@ const ToDoNotes = props => {
                                 <span className="icon-edit"></span>
                             </button>
                             </Tooltip>
-                        <Tooltip placement="rightTop"
-                                 title={`${tooltipOptions.updateNoteStatus}${isActive ? 'completed' : 'in progress'}`}>
+                        <Tooltip placement="top"
+                                 title={`${tooltipOptions.updateNoteStatus}${isActive ? 'in progress' : 'completed'}`}>
                             <button className="btn-transparent note-btn-icon"
                                     onClick={() => props.completedOrInProgressNote(noteId, isActive)}
                                     style={{background: priority}}>
