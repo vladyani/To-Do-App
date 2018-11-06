@@ -24,7 +24,6 @@ export default class ToDoDashboard extends Component {
 
     //force is optional argument, if you pass it then it will load all results from local storage object
     getNotes = (itemsPerPage, page) => {
-        console.log('get notes mordy ahha z dashboard!');
         this.setState({
             toDoNotes: LocalStorageService.findAndPaginateNotes(itemsPerPage, page)
         })
@@ -34,7 +33,6 @@ export default class ToDoDashboard extends Component {
         const {itemsPerPage, page} = this.state;
         this.setState({
             page: page + 1,
-            // toDoNotes: this.state.currentState
         }, () => {
             let pageNumber = page + 1;
             this.getNotes(itemsPerPage, pageNumber);
@@ -45,12 +43,10 @@ export default class ToDoDashboard extends Component {
         const {itemsPerPage, page} = this.state;
         this.setState({
             page: page - 1,
-            // toDoNotes: this.state.currentState
         }, () => {
             let pageNumber = page - 1;
             this.getNotes(itemsPerPage, pageNumber);
         });
-        // if(this.state.page) NotificationService.openNotification();
     };
 
     completedOrInProgressNote = (noteId, isActive) => {
