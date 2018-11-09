@@ -27,3 +27,13 @@ body {
   background: $color-bcg;
   color: $color-white;
 }
+
+.text-brand {
+  color: $color-accent;
+}
+
+.number-length {
+  font-weight: 600;
+  font-size: 2rem;
+  padding: 0.1rem;
+}

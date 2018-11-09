@@ -248,7 +248,7 @@
 .icon-redirect:before {
   content: "\e924";
 }
-.icon-alert:before {
+.icon-error:before {
   content: "\e902";
 }
 .icon-calendar:before {

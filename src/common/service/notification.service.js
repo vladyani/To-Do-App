@@ -24,8 +24,8 @@ export const tooltipOptions = {
 
 export const confirmationModalOptions = [
     {
-        title: 'Do you want to delete these To Do\'s?',
-        content: 'This note will not come back, make sure you do the right thing :)'
+        title: 'Are you sure you want to delete this To Do\'s?',
+        content: 'this note still is in progress status...'
     }
 ];
 

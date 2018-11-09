@@ -135,8 +135,20 @@
   }
 }
 
-@media(max-width:750px){
+@media(max-width: 750px) {
   .note-form {
     width: 95vw;
   }
+}
+
+.error-box {
+  text-align: right;
+}
+
+.text-danger {
+  color: $color-danger;
+}
+
+.icon-error-padding {
+  padding-right: 0.3rem;
 }

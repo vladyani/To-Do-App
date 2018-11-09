@@ -1,17 +1,17 @@
 const colors = [
     {
         bcgColor: '#fc4d59',
-        label: 'Red Circle',
+        label: 'High priority',
         priorityId: 1
     },
     {
         bcgColor: '#c3d500',
-        label: 'Yellow Circle',
+        label: 'Medium priority',
         priorityId: 2
     },
     {
         bcgColor: '#4ad8a3',
-        label: 'Green Circle',
+        label: 'Low priority',
         priorityId: 3
     }
 ];

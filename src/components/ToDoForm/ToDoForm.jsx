@@ -27,6 +27,7 @@ export default class ToDoForm extends Component {
     handleDateChange = date => {
         date ? this.setState({deadline: date._d})
             : this.setState({deadline: ''});
+        return !this.state.deadline ? this.setState({showErrorD: false}) : this.setState({showErrorD: true})
     };
 
     setPriorityId = priority => {
@@ -38,6 +39,12 @@ export default class ToDoForm extends Component {
 
     addNote = event => {
         event.preventDefault();
+        if (!(this.state.priority && this.state.deadline)) {
+            if (!this.state.priority) this.setState({showErrorP: true});
+            if (!this.state.deadline) this.setState({showErrorD: true});
+            return;
+        }
+
         LocalStorageService.createNote({
             noteId: Date.now() + Math.random(),
             subject: this.state.subject,
@@ -54,42 +61,58 @@ export default class ToDoForm extends Component {
         if (this.state.redirect) return <Redirect to='/tododashboard'/>;
 
         return (
-            <div className="content-wrapper bounceInLeft">
-                <form className="note-form">
-                    <div className="form-control-wrapper">
-                        <input type="text" className="form-control" onChange={this.handleChange}
-                               name="subject" placeholder="Subject" required/>
-                    </div>
-                    <div className="form-control-wrapper">
-                        <DatePicker onChange={this.handleDateChange}/>
-                    </div>
-                    <div className="form-control-wrapper">
-                        <Select
-                            showSearch
-                            placeholder="Select priority"
-                            onChange={this.handleChange}>
-                            {colors.map((color, index) =>
-                                <Option
-                                    style={{backgroundColor: color.bcgColor}}
-                                    value={color.bcgColor}
-                                    key={index}>{color.label}
-                                </Option>)}
-                        </Select>
-                    </div>
-                    <div className="form-control-wrapper">
+            <React.Fragment>
+                <div className="content-wrapper">
+                    <form className="note-form slideInLeft animated">
+                        <div className="form-control-wrapper">
+                            <input type="text" className="form-control" onChange={this.handleChange}
+                                   name="subject" placeholder="Subject" required/>
+                        </div>
+                        <div className="form-control-wrapper">
+                            <DatePicker onChange={this.handleDateChange}/>
+                        </div>
+                        <div className="error-box">
+                            {this.state.showErrorD ?
+                                <output className="text-danger">
+                                    <span className="icon-error icon-error-padding"></span>Date is required
+                                </output> : null}
+                        </div>
+                        <div className="form-control-wrapper">
+                            <Select
+                                showSearch
+                                placeholder="Select priority"
+                                onSelect={() => !this.state.priority ? this.setState({showErrorP: false}) : null}
+                                onChange={this.handleChange}>
+                                {colors.map((color, index) =>
+                                    <Option
+                                        style={{backgroundColor: color.bcgColor}}
+                                        value={color.bcgColor}
+                                        key={index}>{color.label}
+                                    </Option>)}
+                            </Select>
+                        </div>
+                        <div className="error-box">
+                            {this.state.showErrorP ?
+                                <output className="text-danger">
+                                    <span className="icon-error icon-error-padding"></span>Priority is required
+                                </output> : null}
+                        </div>
+                        <div className="form-control-wrapper">
                         <textarea name="description"
                                   className="form-control"
                                   onChange={this.handleChange}
                                   placeholder="What do you need to do?"
                                   required>
                         </textarea>
-                    </div>
-                    <button type="submit"
-                            className="add-note-btn"
-                            onClick={event => this.addNote(event)}>
-                    </button>
-                </form>
-            </div>
+                        </div>
+                        <button type="submit"
+                                className={!(this.state.deadline && this.state.priority) ?
+                                    'button-danger add-note-btn' : 'add-note-btn'}
+                                onClick={event => this.addNote(event)}>
+                        </button>
+                    </form>
+                </div>
+            </React.Fragment>
         );
     }
 }

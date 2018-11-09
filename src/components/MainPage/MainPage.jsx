@@ -66,7 +66,7 @@ export default class MainPage extends Component {
                 <div className="main-page">
                     <ToDoCounter/>
                     <ToDoRobot/>
-                    <h1>Let's R2-D-DOOO!</h1>
+                    <h1 className="bounceInUp animated">Let's R2-D-DOOO!</h1>
                     <ToDoButton btnClass="start-btn" routeTo="/todoform"/>
                 </div>
             </React.Fragment>
