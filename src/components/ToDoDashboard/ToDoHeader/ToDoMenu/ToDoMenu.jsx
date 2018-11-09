@@ -17,13 +17,13 @@ const ToDoMenu = (
             </Link>
         </Menu.Item>
         <Menu.Item key="3">
-            <Link to="todohistory">
+            <Link to="/todohistory">
                 <Icon type="file-text"/>
                 <span>ToDo History</span>
             </Link>
         </Menu.Item>
         <Menu.Item key="4">
-            <Link to="todoabout">
+            <Link to="/todoabout">
                 <Icon type="rocket"/>
                 <span>About Us</span>
             </Link>

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import colors from '../../common/service/colors.service';
-import {Select} from 'antd';
-import {DatePicker} from 'antd';
+import {DatePicker, Select, Tooltip} from 'antd';
 import LocalStorageService from '../../common/service/localStorage.service';
-import {Redirect} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import {tooltipOptions} from "../../common/service/notification.service";
 
 const {Option} = Select;
 
@@ -61,58 +61,72 @@ export default class ToDoForm extends Component {
         if (this.state.redirect) return <Redirect to='/tododashboard'/>;
 
         return (
-            <React.Fragment>
-                <div className="content-wrapper">
-                    <form className="note-form slideInLeft animated">
-                        <div className="form-control-wrapper">
-                            <input type="text" className="form-control" onChange={this.handleChange}
-                                   name="subject" placeholder="Subject" required/>
-                        </div>
-                        <div className="form-control-wrapper">
-                            <DatePicker onChange={this.handleDateChange}/>
-                        </div>
-                        <div className="error-box">
-                            {this.state.showErrorD ?
-                                <output className="text-danger">
-                                    <span className="icon-error icon-error-padding"></span>Date is required
-                                </output> : null}
-                        </div>
-                        <div className="form-control-wrapper">
-                            <Select
-                                showSearch
-                                placeholder="Select priority"
-                                onSelect={() => !this.state.priority ? this.setState({showErrorP: false}) : null}
-                                onChange={this.handleChange}>
-                                {colors.map((color, index) =>
-                                    <Option
-                                        style={{backgroundColor: color.bcgColor}}
-                                        value={color.bcgColor}
-                                        key={index}>{color.label}
-                                    </Option>)}
-                            </Select>
-                        </div>
-                        <div className="error-box">
-                            {this.state.showErrorP ?
-                                <output className="text-danger">
-                                    <span className="icon-error icon-error-padding"></span>Priority is required
-                                </output> : null}
-                        </div>
-                        <div className="form-control-wrapper">
+            <div className="content-wrapper">
+                <div className="form-home-route">
+                    <Tooltip placement={'right'}
+                             title={'Go to home'}>
+                        <Link to="/" className="text-brand number-length">
+                            <span className="icon-left-arrow"></span>
+                        </Link>
+                    </Tooltip>
+                </div>
+                <div className="form-dashboard-route">
+                    <Tooltip placement={'left'}
+                             title={'Go to dashboard'}>
+                        <Link to="/tododashboard" className="text-brand number-length">
+                            <span className="icon-right-arrow"></span>
+                        </Link>
+                    </Tooltip>
+                </div>
+                <form className="note-form slideInLeft animated">
+                    <div className="form-control-wrapper">
+                        <input type="text" className="form-control" onChange={this.handleChange}
+                               name="subject" placeholder="Subject" required/>
+                    </div>
+                    <div className="form-control-wrapper">
+                        <DatePicker onChange={this.handleDateChange}/>
+                    </div>
+                    <div className="error-box">
+                        {this.state.showErrorD ?
+                            <output className="text-danger">
+                                <span className="icon-error icon-error-padding"></span>Date is required
+                            </output> : null}
+                    </div>
+                    <div className="form-control-wrapper">
+                        <Select
+                            showSearch={false}
+                            placeholder="Select priority"
+                            onSelect={() => !this.state.priority ? this.setState({showErrorP: false}) : null}
+                            onChange={this.handleChange}>
+                            {colors.map((color, index) =>
+                                <Option
+                                    style={{backgroundColor: color.bcgColor}}
+                                    value={color.bcgColor}
+                                    key={index}>{color.label}
+                                </Option>)}
+                        </Select>
+                    </div>
+                    <div className="error-box">
+                        {this.state.showErrorP ?
+                            <output className="text-danger">
+                                <span className="icon-error icon-error-padding"></span>Priority is required
+                            </output> : null}
+                    </div>
+                    <div className="form-control-wrapper">
                         <textarea name="description"
                                   className="form-control"
                                   onChange={this.handleChange}
                                   placeholder="What do you need to do?"
                                   required>
                         </textarea>
-                        </div>
-                        <button type="submit"
-                                className={!(this.state.deadline && this.state.priority) ?
-                                    'button-danger add-note-btn' : 'add-note-btn'}
-                                onClick={event => this.addNote(event)}>
-                        </button>
-                    </form>
-                </div>
-            </React.Fragment>
+                    </div>
+                    <button type="submit"
+                            className={!(this.state.deadline && this.state.priority) ?
+                                'button-danger add-note-btn' : 'add-note-btn'}
+                            onClick={event => this.addNote(event)}>
+                    </button>
+                </form>
+            </div>
         );
     }
 }
