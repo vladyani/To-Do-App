@@ -3,7 +3,6 @@ import colors from '../../common/service/colors.service';
 import {DatePicker, Select, Tooltip} from 'antd';
 import LocalStorageService from '../../common/service/localStorage.service';
 import {Link, Redirect} from 'react-router-dom';
-import {tooltipOptions} from "../../common/service/notification.service";
 
 const {Option} = Select;
 

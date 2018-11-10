@@ -22,7 +22,7 @@ export default class ToDoCounter extends Component {
         const {notes} = this.state;
         return (
             <div className="bounceInDown animated">
-                {notes.length !== 0 ?
+                {notes ? notes.length !== 0 ?
                     <React.Fragment>
                         <span>Seems that you have todo's, it's
                             <span
@@ -30,7 +30,7 @@ export default class ToDoCounter extends Component {
                         </span>
                         <p><Link to="/tododashboard" className="text-brand">Go to dashboard</Link></p>
                     </React.Fragment>
-                    : 'Seems that you have no to-doo things!'}
+                    : 'Seems that you have no to-doo things!' : null}
             </div>
         );
     }
