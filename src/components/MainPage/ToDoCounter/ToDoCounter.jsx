@@ -30,7 +30,7 @@ export default class ToDoCounter extends Component {
                         </span>
                         <p><Link to="/tododashboard" className="text-brand">Go to dashboard</Link></p>
                     </React.Fragment>
-                    : 'Seems that you have no to-doo things!' : null}
+                    : 'Seems that you have no to-doo things!' : 'Seems that you have no to-doo things!'}
             </div>
         );
     }

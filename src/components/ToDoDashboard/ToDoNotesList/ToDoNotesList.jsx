@@ -75,10 +75,10 @@ export default class ToDoNotesList extends Component {
                                        confirmDeleteNote={confirmDeleteNote}
                                        completedOrInProgressNote={completedOrInProgressNote}
                                        key={index}/>) : null}
-                        {page === 0 ?
-                            !toDoNotes.length ?
-                                <span>Seems that you have no to-doo things!</span> : null
-                            : null}
+                        {toDoNotes ?
+                            page === 0 ?
+                                !toDoNotes.length ? <span>Seems that you have no to-doo things!</span> : null : null
+                            : <span>Seems that you have no to-doo things!</span>}
                     </div>
                     <span>
                         <button className={"btn-transparent"}
@@ -87,7 +87,9 @@ export default class ToDoNotesList extends Component {
                         </button>
                     </span>
                 </div>
-                <div className="page-number"><small>Page number: </small><em>{page+1}</em></div>
+                <div className="page-number">
+                    <small>Page number:</small>
+                    <em>{page + 1}</em></div>
             </React.Fragment>
         )
     }
