@@ -1,5 +1,5 @@
 # It is a project of web application which allows users to create own to do list and manage it. 
-## Completely built in a React with the addition of Ant Design, using the latest methods and technologies. 
+## Completely built in a React with the addition of Ant Design, using the latest technologies. 
 
 ## Technologies
 * REACT
